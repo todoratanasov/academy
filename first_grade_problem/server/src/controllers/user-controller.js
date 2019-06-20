@@ -1,9 +1,13 @@
 const UserModel = require("../models/User");
+const path = require("path");
 const encryption = require("../util/encription");
 const jwt = require('jsonwebtoken');
 const atob = require('atob');
 
 module.exports = {
+    registerGet:(req, res)=>{
+        res.sendFile(path.join(__dirname, "../views/user/register.html"));
+    },
     register: (req,res)=>{
         let { email, password, username } = req.body;
         //we return base64 string to normal string
@@ -36,6 +40,9 @@ module.exports = {
         .catch((error) => {
          console.log(`This is an error from attempting to register a user: ${error}`);
         });
+    },
+    loginGet:(req, res)=>{
+        res.sendFile(path.join(__dirname, "../views/user/login.html"));
     },
     login: (req,res)=>{
         let { username, password } = req.body;
@@ -81,5 +88,6 @@ module.exports = {
             error.statusCode = 500;
             }
         })
-        }
+        },
+        
 }

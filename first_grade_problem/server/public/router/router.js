@@ -1,29 +1,36 @@
-const Router = function(name, routes) {
+const Router = function(name, routes, method) {
   return {
     name,
-    routes
+    routes,
+    method
   };
 };
 
 exports.router = new Router("router", [
   {
     path: "/",
-    name: "Home"
+    name: "Home",
+    method:"GET"
   },
   {
-    path: "/register",
-    name: "Register"
+    path: "/user/register",
+    name: "Register",
+    method:"GET"
   },
   {
-    path: "/login",
-    name: "Login"
+    path: "/user/login",
+    name: "Login",
+    method:"GET"
   },
   {
     path: "/standing",
-    name: "Standing"
+    name: "Standing",
+    method:"GET"
+    
   },
   {
     path: "/stats",
-    name: "Personal stats"
+    name: "Personal stats",
+    method:"GET"
   }
 ]);

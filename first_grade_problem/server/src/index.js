@@ -11,9 +11,7 @@ app.use(express.static("public"));
 //CORS allow all origins, specific methods and specific headers
 app.use(middleware.cors);
 app.use("/user", routes.user);
-app.get("/test", (req, res) => {
-  res.sendFile(path.join(__dirname, "./views/test-view/test.html"));
-});
+app.use("/home", routes.home);
 
 // //
 // const personRoute = require("./routes/person");

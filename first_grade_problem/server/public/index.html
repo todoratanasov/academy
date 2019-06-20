@@ -1,32 +1,24 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <title>First grade problems</title>
-</head>
-<body>
-    <main id="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    </main>
-    <!-- libraries -->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/handlebars/dist/handlebars.js"></script>
-    <script src="node_modules/sammy/lib/sammy.js"></script>
-    <script src="node_modules/sammy/lib/plugins/sammy.handlebars.js"></script>
-    <script src="node_modules/axios/dist/axios.js"></script>
-    <!-- helpers -->
-    <script src="./helpers/storage.js"></script>
-    <!-- requester -->
-    <script src="./helpers/requester.js"></script>
-    <!-- Models -->
-    <script src="./models/userModel.js"></script>
-    <!-- controllers -->
-    <script src="./controllers/home-controller.js"></script>
-    <script src="./controllers//user-controller.js"></script>
-    <!-- router -->
-    <script src="./app.js"></script>
-    
-</body>
+    <title>First grade problems</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    <a href="/standing">Standing</a>
+    <a href="/stats">Personal stats</a>
+    <main id="container"></main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
+    <script src="./index.js"></script>
+
+    <script id="personTpl" type="text/template">
+      <h1>{{title}}</h1>
+    </script>
+  </body>
 </html>

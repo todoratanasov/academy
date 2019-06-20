@@ -1,20 +1,11 @@
 //this is a function that executes simple CRUD operations in the local storage
-const storage = function(){
+exports.saveData = function(key, value) {
+  localStorage.setItem(key, value);
+};
+exports.getData = key => {
+  return localStorage.getItem(key);
+};
 
-    const saveData = function (key, value) { 
-        localStorage.setItem(key, value)
-    };
-
-    const getData = function (key) {
-        return localStorage.getItem(key)
-    };
-
-    const deleteData = function (key) {
-       localStorage.removeItem(key) 
-    }
-    return{
-        saveData,
-        getData,
-        deleteData,
-    }
-}()
+exports.deleteData = function(key) {
+  localStorage.removeItem(key);
+};

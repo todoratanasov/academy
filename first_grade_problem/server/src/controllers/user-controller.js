@@ -11,6 +11,7 @@ module.exports = {
     register: (req,res)=>{
         let { email, password, username } = req.body;
         //we return base64 string to normal string
+        console.log(email)
         email=atob(`${email}`);
         password=atob(`${password}`);
         username=atob(`${username}`);
@@ -25,6 +26,7 @@ module.exports = {
         })
         .then((user) => {
         //we create a token which we send to the front-end
+        
             const token = jwt.sign({ 
                 email: user.email,
                 userId: user._id.toString()

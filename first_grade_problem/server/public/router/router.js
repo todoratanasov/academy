@@ -32,5 +32,10 @@ exports.router = new Router("router", [
     path: "/stats",
     name: "Personal stats",
     method:"GET"
+  },
+  {
+    path: "/game/types",
+    name: "Game",
+    method:"GET"
   }
 ]);

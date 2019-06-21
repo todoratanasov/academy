@@ -12,6 +12,7 @@ app.use(express.static("public"));
 app.use(middleware.cors);
 app.use("/user", routes.user);
 app.use("/home", routes.home);
+app.use("/game", routes.game);
 
 // //
 // const personRoute = require("./routes/person");

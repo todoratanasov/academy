@@ -117,37 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"router/router.js":[function(require,module,exports) {
-var Router = function Router(name, routes, method) {
-  return {
-    name: name,
-    routes: routes,
-    method: method
-  };
-};
-
-exports.router = new Router("router", [{
-  path: "/",
-  name: "Home",
-  method: "GET"
-}, {
-  path: "/user/register",
-  name: "Register",
-  method: "GET"
-}, {
-  path: "/user/login",
-  name: "Login",
-  method: "GET"
-}, {
-  path: "/standing",
-  name: "Standing",
-  method: "GET"
-}, {
-  path: "/stats",
-  name: "Personal stats",
-  method: "GET"
-}]);
-},{}],"helpers/storage.js":[function(require,module,exports) {
+})({"helpers/storage.js":[function(require,module,exports) {
 //this is a function that executes simple CRUD operations in the local storage
 exports.saveData = function (key, value) {
   localStorage.setItem(key, value);
@@ -1136,7 +1106,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"../../../../../../../AppData/Roaming/npm-cache/_npx/12156/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
+},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -1446,7 +1416,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","process":"../../../../../../../AppData/Roaming/npm-cache/_npx/12156/node_modules/parcel/node_modules/process/browser.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","process":"../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
 'use strict';
 
 /**
@@ -1895,50 +1865,121 @@ exports.sendRequest = function (url, method, data, headers) {
     headers: headers
   });
 };
-},{"./storage":"helpers/storage.js","axios":"node_modules/axios/index.js"}],"views/home/home.mst":[function(require,module,exports) {
-module.exports = "/home.21dd6a17.mst";
-},{}],"app.js":[function(require,module,exports) {
+},{"./storage":"helpers/storage.js","axios":"node_modules/axios/index.js"}],"router/router.js":[function(require,module,exports) {
+var Router = function Router(name, routes, method) {
+  return {
+    name: name,
+    routes: routes,
+    method: method
+  };
+};
+
+exports.router = new Router("router", [{
+  path: "/",
+  name: "Home",
+  method: "GET"
+}, {
+  path: "/user/register",
+  name: "Register",
+  method: "GET"
+}, {
+  path: "/user/login",
+  name: "Login",
+  method: "GET"
+}, {
+  path: "/standing",
+  name: "Standing",
+  method: "GET"
+}, {
+  path: "/stats",
+  name: "Personal stats",
+  method: "GET"
+}, {
+  path: "/game/types",
+  name: "Game",
+  method: "GET"
+}]);
+},{}],"controllers/user-controller.js":[function(require,module,exports) {
+"use strict";
+
+var _requester = _interopRequireDefault(require("../helpers/requester"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.registerPost = function () {
+  document.getElementById("registerForm").onsubmit = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var inputs = event.target.elements;
+    var email = btoa(inputs["email"].value);
+    var username = btoa(inputs["username"].value);
+    var password = btoa(inputs["password"].value);
+    var data = {
+      email: email,
+      username: username,
+      password: password
+    };
+
+    _requester.default.sendRequest("/user/register", "POST", data).then(function (result) {
+      //todo here to store the token from the back-end
+      window.location.href = "/";
+    }).catch(function (err) {
+      console.log("this is register error ".concat(err));
+    });
+  };
+};
+},{"../helpers/requester":"helpers/requester.js"}],"controllers/home-controller.js":[function(require,module,exports) {
+"use strict";
+
+var _requester = _interopRequireDefault(require("../helpers/requester"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.homeGet = function () {
+  _requester.default.sendRequest("/home/homescreen", "GET").then(function (result) {
+    var html = Mustache.to_html(result.data);
+    container.innerHTML = html;
+  }).catch(function (err) {
+    console.log("backend error ".concat(err));
+  });
+};
+},{"../helpers/requester":"helpers/requester.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _requester = require("./helpers/requester");
 
 var _router = require("./router/router");
 
-var _home = _interopRequireDefault(require("./views/home/home.mst"));
+var _userController = _interopRequireDefault(require("./controllers/user-controller"));
+
+var _homeController = _interopRequireDefault(require("./controllers/home-controller"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import { Mustache } from "sammy";
-//here we get the current path
 var currentPath = window.location.pathname;
 var container = document.getElementById("container");
 
 if (currentPath === "/") {
-  (0, _requester.sendRequest)("/home/homescreen", "GET").then(function (result) {
-    var html = Mustache.to_html(result.data);
-    container.innerHTML = html;
-  }).catch(function (err) {
-    console.log("backend error ".concat(err));
-  });
+  _homeController.default.homeGet();
 } else {
   var route = _router.router.routes.filter(function (r) {
     return r.path === currentPath;
   })[0];
 
-  console.log(route);
-
   if (route) {
     var method = route.method;
     var url = route.path;
-    console.log(url);
     (0, _requester.sendRequest)(url, method).then(function (result) {
-      var html = Mustache.to_html(result.data);
-      container.innerHTML = html;
+      var data = {
+        firstNumber: 1,
+        action: "+",
+        secondNumber: 3
+      };
+      var html = Mustache.to_html(result.data, data);
+      container.innerHTML = html; //todo to insert if/else if for every url becouse mustache wants every route with {{}} to have data
 
       if (url === "/user/register") {
-        document.getElementById("registerForm").onsubmit = function (event) {
-          console.log(event);
-        };
+        _userController.default.registerPost();
       }
     }).catch(function (err) {
       console.log("backend error ".concat(err));
@@ -1946,18 +1987,13 @@ if (currentPath === "/") {
   } else {
     container.innerHTML = '<div class="wrong-url">404 wrong URL</div>';
   }
-}
-},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./views/home/home.mst":"views/home/home.mst"}],"index.js":[function(require,module,exports) {
-"use strict";
-
-require("./router/router");
-
-require("./app");
-
-require("./helpers/requester");
-
-require("./helpers/storage");
-},{"./router/router":"router/router.js","./app":"app.js","./helpers/requester":"helpers/requester.js","./helpers/storage":"helpers/storage.js"}],"../../../../../../../AppData/Roaming/npm-cache/_npx/12156/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+} // how to use HTML files!!!!!
+//import html from "location"
+//const h1 = document.createRange().createContextualFragment(html)
+//document.body.appendChild(h1)
+//templating engine best
+//mozzila/nunjucks
+},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js"}],"../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1985,7 +2021,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50113" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50036" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -2160,5 +2196,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../../AppData/Roaming/npm-cache/_npx/12156/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/public.e31bb0bc.js.map

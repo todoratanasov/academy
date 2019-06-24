@@ -1,11 +1,12 @@
 const express = require("express");
-const path = require("path");
+const database = require("./util/database");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const routes = require("./routes");
 const middleware = require("./middleware");
 
+database.database();
 app.use(bodyParser.json());
 app.use(express.static("public"));
 //CORS allow all origins, specific methods and specific headers
@@ -13,19 +14,23 @@ app.use(middleware.cors);
 app.use("/user", routes.user);
 app.use("/home", routes.home);
 app.use("/game", routes.game);
-
+app.use("/profile", routes.profile);
+app.use("/standings", routes.standings);
+app.use("/result", routes.result);
+app.use((req, res, next) => {
+  res.status(404).send("ooops wrong URL");
+  next();
+});
 // //
 // const personRoute = require("./routes/person");
 // const customerRoute = require("./routes/customer");
 // app.use("/someroute", personRoute);
 // app.use(customerRoute);
-// 
+//
 // //
 
 // //404 not found url
-// app.use((req, res, next) => {
-//   res.status(404).send("ooops wrong URL");
-//   next();
+
 // });
 
 // //500 enternal server eror middleware

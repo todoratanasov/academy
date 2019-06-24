@@ -1,12 +1,15 @@
 import { sendRequest } from "./helpers/requester";
 import { router } from "./router/router";
 import userController from "./controllers/user-controller";
-import homeController from "./controllers/home-controller"
+import homeController from "./controllers/home-controller";
+import gameController from "./controllers/game-controller";
+import profileController from "./controllers/profile-controller";
+import standingsController from "./controllers/standings-controller";
+import "./node_modules/toastr/build/toastr";
 const currentPath = window.location.pathname;
-const container = document.getElementById("container");
 
 if (currentPath === "/") {
-    homeController.homeGet();
+  homeController.homeGet();
 } else {
   const route = router.routes.filter(r => {
     return r.path === currentPath;
@@ -14,24 +17,38 @@ if (currentPath === "/") {
   if (route) {
     const method = route.method;
     const url = route.path;
-    sendRequest(url,method)
-      .then((result)=>{
-        const data = {firstNumber:1,action:"+",secondNumber:3}
-        const html = Mustache.to_html(result.data,data);
-        container.innerHTML = html;
-        //todo to insert if/else if for every url becouse mustache wants every route with {{}} to have data
-        if(url==="/user/register"){
-          userController.registerPost();
-        }
-      })
-      .catch(err => {
-        console.log(`backend error ${err}`);
-      });
+
+    if (url === "/logout") {
+      userController.logoutPost();
+    } else {
+      sendRequest(url, method)
+        .then(result => {
+          const html = result.data;
+          if (url === "/user/register") {
+            userController.registerGet(html);
+            userController.registerPost();
+          } else if (url === "/user/login") {
+            userController.loginGet(html);
+            userController.loginPost();
+          } else if (url === "/game/types") {
+            gameController.gameIndexGet(html);
+          } else if (url === "/profile/stats") {
+            profileController.statsGet(html);
+          } else if (url === "/standings/index") {
+            standingsController.standingsGet(html);
+          } else if (url === "/game/single") {
+            gameController.gameSingleGet(html);
+            gameController.gameSingleGenerate();
+          }
+        })
+        .catch(err => {
+          console.log(`backend error ${err}`);
+        });
+    }
   } else {
     container.innerHTML = '<div class="wrong-url">404 wrong URL</div>';
   }
 }
-
 
 // how to use HTML files!!!!!
 //import html from "location"

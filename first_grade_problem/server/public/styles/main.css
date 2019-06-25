@@ -1,0 +1,16 @@
+body{
+    padding: 3rem;
+    background: lime;
+}
+#container{
+    align-content: center;
+}
+.border-field{
+    border: 2px solid blue;
+}
+.correct-answer{
+    border: 2px solid green;
+}
+.incorrect-answer{
+    border: 2px solid red;
+}

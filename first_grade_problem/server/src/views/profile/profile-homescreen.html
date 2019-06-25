@@ -1,13 +1,23 @@
 <h1>This is profile homescreen</h1>
 <hr />
-<h3>{{ username }}</h3>
+<h3>Username: '{{ user }}'</h3>
+<button data-userId='{{userId}}' id="edit-user-button">Edit user</button>
+<form hidden action="edit-user">
+  <input type="text" name="edit-username">
+  <input type="submit" value="Save">
+</form>
+
 <table style="width:100%">
   <tr>
     <td>Total games:</td>
     <td>{{ games }}</td>
   </tr>
   <tr>
-    <td>Current score:</td>
-    <td>{{ score }}</td>
+    <td>Correct answers:</td>
+    <td>{{ correct }}</td>
+  </tr>
+  <tr>
+    <td>Incorrect answers</td>
+    <td>{{ incorrect }}</td>
   </tr>
 </table>

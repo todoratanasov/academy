@@ -5,6 +5,7 @@ import homeController from "./controllers/home-controller";
 import gameController from "./controllers/game-controller";
 import profileController from "./controllers/profile-controller";
 import standingsController from "./controllers/standings-controller";
+import "./styles/main.css"
 import "./node_modules/toastr/build/toastr";
 const currentPath = window.location.pathname;
 //here we check if a route exists and if so we make GET request to the back-end and we call the controller with the returned html as a parameter

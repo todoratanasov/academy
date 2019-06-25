@@ -1,18 +1,22 @@
 import requester from "../helpers/requester";
 import gameCreator from "../helpers/game-generator";
 import storage from "../helpers/storage";
+import{toggle} from "../helpers/toggle-layout";
 const toastr = require("toastr");
 const container = document.getElementById("container");
 //gameIndexGet renders the homescreen of the game
 exports.gameIndexGet = html => {
+  toggle();
   container.innerHTML = html;
 };
 //gameSingleGet renders the options for a single game
 exports.gameSingleGet = html => {
+  toggle();
   container.innerHTML = html;
 };
 //gameSingleGenerate generates the type of the single game
 exports.gameSingleGenerate = html => {
+  toggle();
   const gameContainer = document.getElementById("game-container");
 
   const gameResult = {
@@ -43,36 +47,65 @@ exports.gameSingleGenerate = html => {
           event.preventDefault();
           event.stopPropagation();
           const inputs = event.target.elements;
-
           for (let i = 0; i < digitArr.length / 2; i++) {
             const answer = +gameArr.gameArray[i].answer;
-            const input = +inputs[i].value;
-            const element = document.createElement("i");
-            //we check if all fields are filled
-            if (!answer || !input || !element) {
-              toastr.warning("Please fill all fields");
-              element.setAttribute("class", "fas fa-times");
+            const input = inputs[i];
+            //we check if there is a whitespace in the input
+            if(/\s/.test(input.value)){
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .appendChild(element);
+                .setAttribute("class", "border-field")
               return;
+            }else{
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .removeAttribute("class", "border-field")
             }
+            //we check if there is an alphabetical character
+            if(/[a-z]/.test(input.value.toLowerCase())){
+              toastr.warning("Please don't use alpabetical in the input fields!");
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .setAttribute("class", "border-field")
+              return;
+            }else{
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .removeAttribute("class", "border-field")
+            }
+            //we check if all fields are filled
+            if (!answer || !input.value) {
+              toastr.warning("Please fill all fields");
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .setAttribute("class", "border-field")
+              return;
+            }else{
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .removeAttribute("class", "border-field")
+            }
+            
             //we add some icons depending on the provided answers
-            if (answer === input) {
-              element.setAttribute("class", "fas fa-check");
+            if (answer === +input.value) {
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .setAttribute("class", "correct-answer")
               gameResult.correct++;
             } else {
-              element.setAttribute("class", "fas fa-times");
+              document
+                .querySelector(`#game-form>div:nth-child(${i + 1})`)
+                .setAttribute("class", "incorrect-answer")
               gameResult.incorrect++;
             }
-            document
-              .querySelector(`#game-form>div:nth-child(${i + 1})`)
-              .appendChild(element);
+            input.setAttribute("disabled","true");
+            
           }
           //we toggle the buttons on the form
           document
             .getElementById("submit-answers")
             .setAttribute("hidden", "true");
+         
           document.getElementById("save-result").removeAttribute("hidden");
         };
         //we add an eventListener to the button and when is clicked a function sends a POST request the with the result as an object to the back-end

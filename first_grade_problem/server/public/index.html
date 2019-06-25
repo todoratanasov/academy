@@ -17,12 +17,13 @@
   </head>
   <body>
     <a href="/">Home</a>
-    <a href="/user/register">Register</a>
-    <a href="/user/login">Login</a>
-    <a href="/logout">Logout</a>
-    <a href="/standings/index">Standings</a>
-    <a href="/profile/stats">Personal stats</a>
-    <a href="/game/types">Game</a>
+    <a id="register" href="/user/register">Register</a>
+    <a id="login" href="/user/login">Login</a>
+    <a id="logout" hidden href="/logout">Logout</a>
+    <a id="standings" hidden href="/standings/index">Standings</a>
+    <a id="profile" hidden href="/profile/stats">Personal stats</a>
+    <a id="game" hidden href="/game/types">Game</a>
+    <span id="greeting"></span>
     <main id="container"></main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.js"></script>

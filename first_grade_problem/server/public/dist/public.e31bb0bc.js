@@ -1919,7 +1919,25 @@ exports.router = new Router("router", [{
   name: "Chalenge game",
   method: "GET"
 }]);
-},{}],"node_modules/jquery/dist/jquery.js":[function(require,module,exports) {
+},{}],"helpers/toggle-layout.js":[function(require,module,exports) {
+"use strict";
+
+var _storage = require("./storage");
+
+exports.toggle = function () {
+  var username = (0, _storage.getData)("username"); //we show/hide buttons depending on if the user is loggedin
+
+  if (username) {
+    document.getElementById("logout").removeAttribute("hidden");
+    document.getElementById("standings").removeAttribute("hidden");
+    document.getElementById("profile").removeAttribute("hidden");
+    document.getElementById("game").removeAttribute("hidden");
+    document.getElementById("register").setAttribute("hidden", "true");
+    document.getElementById("login").setAttribute("hidden", "true");
+    document.getElementById("greeting").innerText = "Hello, ".concat(username, "! It's time to play the game!");
+  }
+};
+},{"./storage":"helpers/storage.js"}],"node_modules/jquery/dist/jquery.js":[function(require,module,exports) {
 var global = arguments[3];
 var process = require("process");
 var define;
@@ -13008,6 +13026,8 @@ var _requester = _interopRequireDefault(require("../helpers/requester"));
 
 var _storage = require("../helpers/storage");
 
+var _toggleLayout = require("../helpers/toggle-layout");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var toastr = require("toastr");
@@ -13015,6 +13035,7 @@ var toastr = require("toastr");
 var container = document.getElementById("container"); //this just renders the login form
 
 exports.loginGet = function (html) {
+  (0, _toggleLayout.toggle)();
   container.innerHTML = html;
 }; //loginPost sends a POST request to the back-end along with the collected data from the login form as an object
 
@@ -13026,6 +13047,17 @@ exports.loginPost = function () {
     var inputs = event.target.elements;
     var email = btoa(inputs["email"].value);
     var password = btoa(inputs["password"].value);
+
+    if (!email || !password) {
+      toastr.warning("Please fill all fields");
+      return;
+    }
+
+    if (/\s/.test(email) || /\s/.test(password)) {
+      toastr.warning("Please don't use space in the input fields");
+      return;
+    }
+
     var data = {
       email: email,
       password: password
@@ -13058,6 +13090,7 @@ exports.logoutPost = function () {
 
 
 exports.registerGet = function (html) {
+  (0, _toggleLayout.toggle)();
   container.innerHTML = html;
 }; //registerPost sends a POST requiest to the back-end along with the collected data from the register form as an object
 
@@ -13067,13 +13100,24 @@ exports.registerPost = function (html) {
     event.preventDefault();
     event.stopPropagation();
     var inputs = event.target.elements;
-    var email = btoa(inputs["email"].value);
-    var username = btoa(inputs["username"].value);
-    var password = btoa(inputs["password"].value);
+    var email = inputs["email"].value;
+    var username = inputs["username"].value;
+    var password = inputs["password"].value;
+
+    if (!email || !username || !password) {
+      toastr.warning("Please fill all fields");
+      return;
+    }
+
+    if (/\s/.test(email) || /\s/.test(username) || /\s/.test(password)) {
+      toastr.warning("Please don't use space in the input fields");
+      return;
+    }
+
     var data = {
-      email: email,
-      username: username,
-      password: password
+      email: btoa(email),
+      username: btoa(username),
+      password: btoa(password)
     };
 
     _requester.default.sendRequest("/user/register", "POST", data).then(function (result) {
@@ -13093,10 +13137,12 @@ exports.registerPost = function (html) {
     });
   };
 };
-},{"../helpers/requester":"helpers/requester.js","../helpers/storage":"helpers/storage.js","toastr":"node_modules/toastr/toastr.js"}],"controllers/home-controller.js":[function(require,module,exports) {
+},{"../helpers/requester":"helpers/requester.js","../helpers/storage":"helpers/storage.js","../helpers/toggle-layout":"helpers/toggle-layout.js","toastr":"node_modules/toastr/toastr.js"}],"controllers/home-controller.js":[function(require,module,exports) {
 "use strict";
 
 var _requester = _interopRequireDefault(require("../helpers/requester"));
+
+var _toggleLayout = require("../helpers/toggle-layout");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13105,11 +13151,12 @@ exports.homeGet = function () {
   _requester.default.sendRequest("/home/homescreen", "GET").then(function (result) {
     var html = result.data;
     container.innerHTML = html;
+    (0, _toggleLayout.toggle)();
   }).catch(function (err) {
-    console.log("backend error ".concat(err));
+    console.log("Backend error ".concat(err));
   });
 };
-},{"../helpers/requester":"helpers/requester.js"}],"helpers/game-generator.js":[function(require,module,exports) {
+},{"../helpers/requester":"helpers/requester.js","../helpers/toggle-layout":"helpers/toggle-layout.js"}],"helpers/game-generator.js":[function(require,module,exports) {
 //randomDigit generates an array with random digits
 exports.randomDigit = function (range, quantity) {
   var min = range[0];
@@ -13161,6 +13208,8 @@ var _gameGenerator = _interopRequireDefault(require("../helpers/game-generator")
 
 var _storage = _interopRequireDefault(require("../helpers/storage"));
 
+var _toggleLayout = require("../helpers/toggle-layout");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var toastr = require("toastr");
@@ -13168,16 +13217,19 @@ var toastr = require("toastr");
 var container = document.getElementById("container"); //gameIndexGet renders the homescreen of the game
 
 exports.gameIndexGet = function (html) {
+  (0, _toggleLayout.toggle)();
   container.innerHTML = html;
 }; //gameSingleGet renders the options for a single game
 
 
 exports.gameSingleGet = function (html) {
+  (0, _toggleLayout.toggle)();
   container.innerHTML = html;
 }; //gameSingleGenerate generates the type of the single game
 
 
 exports.gameSingleGenerate = function (html) {
+  (0, _toggleLayout.toggle)();
   var gameContainer = document.getElementById("game-container");
   var gameResult = {
     correct: 0,
@@ -13211,26 +13263,43 @@ exports.gameSingleGenerate = function (html) {
 
         for (var i = 0; i < digitArr.length / 2; i++) {
           var answer = +gameArr.gameArray[i].answer;
-          var input = +inputs[i].value;
-          var element = document.createElement("i"); //we check if all fields are filled
+          var input = inputs[i]; //we check if there is a whitespace in the input
 
-          if (!answer || !input || !element) {
-            toastr.warning("Please fill all fields");
-            element.setAttribute("class", "fas fa-times");
-            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).appendChild(element);
+          if (/\s/.test(input.value)) {
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).setAttribute("class", "border-field");
             return;
+          } else {
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).removeAttribute("class", "border-field");
+          } //we check if there is an alphabetical character
+
+
+          if (/[a-z]/.test(input.value.toLowerCase())) {
+            toastr.warning("Please don't use alpabetical in the input fields!");
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).setAttribute("class", "border-field");
+            return;
+          } else {
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).removeAttribute("class", "border-field");
+          } //we check if all fields are filled
+
+
+          if (!answer || !input.value) {
+            toastr.warning("Please fill all fields");
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).setAttribute("class", "border-field");
+            return;
+          } else {
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).removeAttribute("class", "border-field");
           } //we add some icons depending on the provided answers
 
 
-          if (answer === input) {
-            element.setAttribute("class", "fas fa-check");
+          if (answer === +input.value) {
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).setAttribute("class", "correct-answer");
             gameResult.correct++;
           } else {
-            element.setAttribute("class", "fas fa-times");
+            document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).setAttribute("class", "incorrect-answer");
             gameResult.incorrect++;
           }
 
-          document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).appendChild(element);
+          input.setAttribute("disabled", "true");
         } //we toggle the buttons on the form
 
 
@@ -13257,29 +13326,59 @@ exports.gameSingleGenerate = function (html) {
     });
   };
 };
-},{"../helpers/requester":"helpers/requester.js","../helpers/game-generator":"helpers/game-generator.js","../helpers/storage":"helpers/storage.js","toastr":"node_modules/toastr/toastr.js"}],"controllers/profile-controller.js":[function(require,module,exports) {
+},{"../helpers/requester":"helpers/requester.js","../helpers/game-generator":"helpers/game-generator.js","../helpers/storage":"helpers/storage.js","../helpers/toggle-layout":"helpers/toggle-layout.js","toastr":"node_modules/toastr/toastr.js"}],"helpers/profile-update.js":[function(require,module,exports) {
+"use strict";
+
+var _requester = require("../helpers/requester");
+
+exports.updateProfile = function (_id) {
+  var data = {
+    _id: _id
+  };
+  (0, _requester.sendRequest)("POST", "/profile/edit", data).then(function (result) {}).cach(function (err) {
+    console.log("This is an error from editing username: ".concat(err));
+  });
+};
+},{"../helpers/requester":"helpers/requester.js"}],"controllers/profile-controller.js":[function(require,module,exports) {
 "use strict";
 
 var _requester = require("../helpers/requester");
 
 var _storage = require("../helpers/storage");
 
+var _toggleLayout = require("../helpers/toggle-layout");
+
+var _profileUpdate = require("../helpers/profile-update");
+
 var container = document.getElementById("container"); //statsGet sends a GET request to the back-end to get the user's personal stats and another GET request to get the html. After the data is combined we render it
 
 exports.statsGet = function (html) {
+  (0, _toggleLayout.toggle)();
   var userId = (0, _storage.getData)("userId");
-  (0, _requester.sendRequest)("/profile/result:".concat(userId), "GET").then(function (result) {}).catch(function (err) {
+  (0, _requester.sendRequest)("/profile/result:".concat(userId), "GET").then(function (result) {
+    var htmlParsed = Mustache.to_html(html, result.data);
+    container.innerHTML = htmlParsed;
+    var editButton = document.getElementById("edit-user-button");
+    var userId = editButton.getAttribute("data-userId");
+    editButton.addEventListener("click", (0, _profileUpdate.updateProfile)(userId));
+  }).catch(function (err) {
     console.log("This is an error from retreiving personal stats ".concat(err));
   });
   container.innerHTML = html;
 };
-},{"../helpers/requester":"helpers/requester.js","../helpers/storage":"helpers/storage.js"}],"controllers/standings-controller.js":[function(require,module,exports) {
-var container = document.getElementById("container"); //standingsGet send a GET request to the back-end to get the results of all users and another GET request to get the html. Combines them and renders the html
+},{"../helpers/requester":"helpers/requester.js","../helpers/storage":"helpers/storage.js","../helpers/toggle-layout":"helpers/toggle-layout.js","../helpers/profile-update":"helpers/profile-update.js"}],"controllers/standings-controller.js":[function(require,module,exports) {
+"use strict";
 
+var _toggleLayout = require("../helpers/toggle-layout");
+
+var container = document.getElementById("container");
+
+//standingsGet send a GET request to the back-end to get the results of all users and another GET request to get the html. Combines them and renders the html
 exports.standingsGet = function (html) {
+  (0, _toggleLayout.toggle)();
   container.innerHTML = html;
 };
-},{}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"../helpers/toggle-layout":"helpers/toggle-layout.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -13311,7 +13410,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -13346,13 +13445,18 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"node_modules/toastr/build/toastr.css":[function(require,module,exports) {
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles/main.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/toastr/build/toastr.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _requester = require("./helpers/requester");
@@ -13368,6 +13472,8 @@ var _gameController = _interopRequireDefault(require("./controllers/game-control
 var _profileController = _interopRequireDefault(require("./controllers/profile-controller"));
 
 var _standingsController = _interopRequireDefault(require("./controllers/standings-controller"));
+
+require("./styles/main.css");
 
 require("./node_modules/toastr/build/toastr");
 
@@ -13419,7 +13525,7 @@ if (currentPath === "/") {
     container.innerHTML = '<div class="wrong-url">404 wrong URL</div>';
   }
 }
-},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js","./controllers/game-controller":"controllers/game-controller.js","./controllers/profile-controller":"controllers/profile-controller.js","./controllers/standings-controller":"controllers/standings-controller.js","./node_modules/toastr/build/toastr":"node_modules/toastr/build/toastr.css"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js","./controllers/game-controller":"controllers/game-controller.js","./controllers/profile-controller":"controllers/profile-controller.js","./controllers/standings-controller":"controllers/standings-controller.js","./styles/main.css":"styles/main.css","./node_modules/toastr/build/toastr":"node_modules/toastr/build/toastr.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13447,7 +13553,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54426" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51925" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -13622,5 +13728,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/public.e31bb0bc.js.map

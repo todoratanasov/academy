@@ -118,14 +118,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"helpers/storage.js":[function(require,module,exports) {
-//this is a function that executes simple CRUD operations in the local storage
+//saveData saves data into the localStorage
 exports.saveData = function (key, value) {
   localStorage.setItem(key, value);
-};
+}; //getData retreives data from the localStorage
+
 
 exports.getData = function (key) {
   return localStorage.getItem(key);
-};
+}; //deleteData deletes data from the localStorage
+
 
 exports.deleteData = function (key) {
   if (!key) {
@@ -1110,7 +1112,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
+},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -1420,7 +1422,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","process":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","process":"node_modules/process/browser.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
 'use strict';
 
 /**
@@ -1850,7 +1852,8 @@ module.exports = require('./lib/axios');
 },{"./lib/axios":"node_modules/axios/lib/axios.js"}],"helpers/requester.js":[function(require,module,exports) {
 var storage = require("./storage");
 
-var axios = require("axios");
+var axios = require("axios"); //sendRequest receives some parameters and makes the requests to the back-end
+
 
 exports.sendRequest = function (url, method, data, headers) {
   var baseUrl = "http://localhost:3000";
@@ -1870,6 +1873,7 @@ exports.sendRequest = function (url, method, data, headers) {
   });
 };
 },{"./storage":"helpers/storage.js","axios":"node_modules/axios/index.js"}],"router/router.js":[function(require,module,exports) {
+//Router returns an object containing an array of an objects containing path url, name and method
 var Router = function Router(name, routes, method) {
   return {
     name: name,
@@ -12518,7 +12522,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"node_modules/toastr/toastr.js":[function(require,module,exports) {
+},{"process":"node_modules/process/browser.js"}],"node_modules/toastr/toastr.js":[function(require,module,exports) {
 var define;
 /*
  * Toastr
@@ -13008,11 +13012,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var toastr = require("toastr");
 
-var container = document.getElementById("container");
+var container = document.getElementById("container"); //this just renders the login form
 
 exports.loginGet = function (html) {
   container.innerHTML = html;
-};
+}; //loginPost sends a POST request to the back-end along with the collected data from the login form as an object
+
 
 exports.loginPost = function () {
   document.getElementById("loginForm").onsubmit = function (event) {
@@ -13031,7 +13036,8 @@ exports.loginPost = function () {
           token = _result$data.token,
           email = _result$data.email,
           username = _result$data.username,
-          userId = _result$data.userId;
+          userId = _result$data.userId; //the returned data is stored in the localStorage
+
       (0, _storage.saveData)("token", token);
       (0, _storage.saveData)("email", email);
       (0, _storage.saveData)("username", username);
@@ -13042,16 +13048,19 @@ exports.loginPost = function () {
       console.log("This is an error from login ".concat(err));
     });
   };
-};
+}; //logoutPost deletes the token and the data from the localStorage
+
 
 exports.logoutPost = function () {
   (0, _storage.deleteData)();
   window.location.href = "/";
-};
+}; //registerGet renders the register form
+
 
 exports.registerGet = function (html) {
   container.innerHTML = html;
-};
+}; //registerPost sends a POST requiest to the back-end along with the collected data from the register form as an object
+
 
 exports.registerPost = function (html) {
   document.getElementById("registerForm").onsubmit = function (event) {
@@ -13072,7 +13081,8 @@ exports.registerPost = function (html) {
           token = _result$data2.token,
           email = _result$data2.email,
           username = _result$data2.username,
-          userId = _result$data2.userId;
+          userId = _result$data2.userId; //the returned data is stored in the localStorage
+
       (0, _storage.saveData)("token", token);
       (0, _storage.saveData)("email", email);
       (0, _storage.saveData)("username", username);
@@ -13090,6 +13100,7 @@ var _requester = _interopRequireDefault(require("../helpers/requester"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//homeGet sends a GET request to the back-end and renders the returned html
 exports.homeGet = function () {
   _requester.default.sendRequest("/home/homescreen", "GET").then(function (result) {
     var html = result.data;
@@ -13099,6 +13110,7 @@ exports.homeGet = function () {
   });
 };
 },{"../helpers/requester":"helpers/requester.js"}],"helpers/game-generator.js":[function(require,module,exports) {
+//randomDigit generates an array with random digits
 exports.randomDigit = function (range, quantity) {
   var min = range[0];
   var max = range[1];
@@ -13110,7 +13122,8 @@ exports.randomDigit = function (range, quantity) {
   }
 
   return arrNumbers;
-};
+}; //createGame creates an object with the math problems and their answers as an array ot objects
+
 
 exports.createGame = function (arrNumbers, operation, quantity) {
   var problems = {
@@ -13152,37 +13165,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var toastr = require("toastr");
 
-var container = document.getElementById("container");
+var container = document.getElementById("container"); //gameIndexGet renders the homescreen of the game
 
 exports.gameIndexGet = function (html) {
   container.innerHTML = html;
-};
+}; //gameSingleGet renders the options for a single game
+
 
 exports.gameSingleGet = function (html) {
   container.innerHTML = html;
-};
+}; //gameSingleGenerate generates the type of the single game
+
 
 exports.gameSingleGenerate = function (html) {
   var gameContainer = document.getElementById("game-container");
   var gameResult = {
     correct: 0,
     incorrect: 0
-  };
+  }; //here we retreive the playboard from the back-end and we render it
 
   document.getElementById("singleGame").onsubmit = function (event) {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopPropagation(); //we get the inputs
+
     var inputs = event.target.elements;
     var range = inputs["range"].value.split("-").map(function (char) {
       return Number(char);
     });
-
-    if (range) {
-      console.log("empty");
-    }
-
     var operation = inputs["operation"].value;
-    var quantity = Number(inputs["quantity"].value);
+    var quantity = Number(inputs["quantity"].value); //we generate the problems and we pass them as an object to Mustache
 
     var digitArr = _gameGenerator.default.randomDigit(range, quantity);
 
@@ -13191,7 +13202,7 @@ exports.gameSingleGenerate = function (html) {
     _requester.default.sendRequest("/game/playboard", "GET").then(function (result) {
       var html = result.data;
       var htmlParsed = Mustache.to_html(html, gameArr);
-      gameContainer.innerHTML = htmlParsed;
+      gameContainer.innerHTML = htmlParsed; //we attach a functiot that checks the correct and incorrect answers
 
       document.getElementById("game-form").onsubmit = function (event) {
         event.preventDefault();
@@ -13201,14 +13212,15 @@ exports.gameSingleGenerate = function (html) {
         for (var i = 0; i < digitArr.length / 2; i++) {
           var answer = +gameArr.gameArray[i].answer;
           var input = +inputs[i].value;
-          var element = document.createElement("i");
+          var element = document.createElement("i"); //we check if all fields are filled
 
           if (!answer || !input || !element) {
             toastr.warning("Please fill all fields");
             element.setAttribute("class", "fas fa-times");
             document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).appendChild(element);
             return;
-          }
+          } //we add some icons depending on the provided answers
+
 
           if (answer === input) {
             element.setAttribute("class", "fas fa-check");
@@ -13219,11 +13231,13 @@ exports.gameSingleGenerate = function (html) {
           }
 
           document.querySelector("#game-form>div:nth-child(".concat(i + 1, ")")).appendChild(element);
-        }
+        } //we toggle the buttons on the form
+
 
         document.getElementById("submit-answers").setAttribute("hidden", "true");
         document.getElementById("save-result").removeAttribute("hidden");
-      };
+      }; //we add an eventListener to the button and when is clicked a function sends a POST request the with the result as an object to the back-end
+
 
       var userId = _storage.default.getData("userId");
 
@@ -13250,7 +13264,7 @@ var _requester = require("../helpers/requester");
 
 var _storage = require("../helpers/storage");
 
-var container = document.getElementById("container");
+var container = document.getElementById("container"); //statsGet sends a GET request to the back-end to get the user's personal stats and another GET request to get the html. After the data is combined we render it
 
 exports.statsGet = function (html) {
   var userId = (0, _storage.getData)("userId");
@@ -13260,12 +13274,12 @@ exports.statsGet = function (html) {
   container.innerHTML = html;
 };
 },{"../helpers/requester":"helpers/requester.js","../helpers/storage":"helpers/storage.js"}],"controllers/standings-controller.js":[function(require,module,exports) {
-var container = document.getElementById("container");
+var container = document.getElementById("container"); //standingsGet send a GET request to the back-end to get the results of all users and another GET request to get the html. Combines them and renders the html
 
 exports.standingsGet = function (html) {
   container.innerHTML = html;
 };
-},{}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -13297,7 +13311,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -13332,13 +13346,13 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"node_modules/toastr/build/toastr.css":[function(require,module,exports) {
+},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"node_modules/toastr/build/toastr.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _requester = require("./helpers/requester");
@@ -13359,7 +13373,7 @@ require("./node_modules/toastr/build/toastr");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var currentPath = window.location.pathname;
+var currentPath = window.location.pathname; //here we check if a route exists and if so we make GET request to the back-end and we call the controller with the returned html as a parameter
 
 if (currentPath === "/") {
   _homeController.default.homeGet();
@@ -13404,13 +13418,8 @@ if (currentPath === "/") {
   } else {
     container.innerHTML = '<div class="wrong-url">404 wrong URL</div>';
   }
-} // how to use HTML files!!!!!
-//import html from "location"
-//const h1 = document.createRange().createContextualFragment(html)
-//document.body.appendChild(h1)
-//templating engine best
-//mozzila/nunjucks
-},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js","./controllers/game-controller":"controllers/game-controller.js","./controllers/profile-controller":"controllers/profile-controller.js","./controllers/standings-controller":"controllers/standings-controller.js","./node_modules/toastr/build/toastr":"node_modules/toastr/build/toastr.css"}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}
+},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js","./controllers/game-controller":"controllers/game-controller.js","./controllers/profile-controller":"controllers/profile-controller.js","./controllers/standings-controller":"controllers/standings-controller.js","./node_modules/toastr/build/toastr":"node_modules/toastr/build/toastr.css"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13438,7 +13447,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56026" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54426" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -13613,5 +13622,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/public.e31bb0bc.js.map

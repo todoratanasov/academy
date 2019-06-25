@@ -11,18 +11,12 @@
   "dependencies": {
     "axios": "^0.19.0",
     "jquery": "^3.4.1",
-    "nunjucks": "^3.2.0",
     "parcel": "^1.12.3",
     "sammy": "^0.7.6",
     "toastr": "^2.1.4"
   },
   "devDependencies": {
     "front-matter": "^2.3.0",
-    "handlebars": "^4.1.2",
-    "handlebars-helpers": "^0.10.0",
-    "handlebars-layouts": "^3.1.4",
-    "handlebars-wax": "^6.1.0",
-    "parcel-bundler": "^1.12.3",
-    "parcel-plugin-handlebars": "^0.4.4"
+    "parcel-bundler": "^1.12.3"
   }
 }

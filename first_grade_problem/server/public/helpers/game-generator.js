@@ -1,3 +1,4 @@
+//randomDigit generates an array with random digits
 exports.randomDigit = (range, quantity) => {
   const min = range[0];
   const max = range[1];
@@ -8,6 +9,7 @@ exports.randomDigit = (range, quantity) => {
   }
   return arrNumbers;
 };
+//createGame creates an object with the math problems and their answers as an array ot objects
 exports.createGame = (arrNumbers, operation, quantity) => {
   const problems = { gameArray: [] };
   for (let index = 0; index < quantity * 2; index += 2) {

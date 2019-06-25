@@ -7,7 +7,7 @@ import profileController from "./controllers/profile-controller";
 import standingsController from "./controllers/standings-controller";
 import "./node_modules/toastr/build/toastr";
 const currentPath = window.location.pathname;
-
+//here we check if a route exists and if so we make GET request to the back-end and we call the controller with the returned html as a parameter
 if (currentPath === "/") {
   homeController.homeGet();
 } else {
@@ -49,11 +49,3 @@ if (currentPath === "/") {
     container.innerHTML = '<div class="wrong-url">404 wrong URL</div>';
   }
 }
-
-// how to use HTML files!!!!!
-//import html from "location"
-//const h1 = document.createRange().createContextualFragment(html)
-//document.body.appendChild(h1)
-
-//templating engine best
-//mozzila/nunjucks

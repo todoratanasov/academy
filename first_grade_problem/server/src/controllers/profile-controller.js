@@ -1,5 +1,5 @@
 const path = require("path");
-
+//we send the requested files
 module.exports = {
   statsGet: (req, res) => {
     res

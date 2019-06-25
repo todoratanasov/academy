@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+//here we check if the user is allow to receive a certain resourcess
 module.exports = (req, res, next) => {
   const authHeaders = req.get('Authorization');
   if (!authHeaders) {

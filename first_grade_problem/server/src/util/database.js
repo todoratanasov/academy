@@ -3,7 +3,7 @@ const server = "ds235417.mlab.com:35417";
 const database = "first_grade_problems";
 const user = "atanasov.t";
 const password = "fs23Z9a";
-
+//we configure the connection with the DB
 module.exports = {
   database: () =>
     mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)

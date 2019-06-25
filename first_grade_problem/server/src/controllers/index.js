@@ -1,3 +1,4 @@
+//here we export all routes as an object of modules
 const user = require("./user-controller");
 const home = require("./home-controller");
 const game = require("./game-controller");

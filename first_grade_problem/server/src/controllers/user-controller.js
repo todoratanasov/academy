@@ -48,9 +48,11 @@ module.exports = {
         );
       });
   },
+  //we send the requested files
   loginGet: (req, res) => {
     res.sendFile(path.join(__dirname, "../views/user/login.html"));
   },
+
   login: (req, res) => {
     let { email, password } = req.body;
     password = atob(`${password}`);

@@ -1,3 +1,4 @@
+//Router returns an object containing an array of an objects containing path url, name and method
 const Router = function(name, routes, method) {
   return {
     name,

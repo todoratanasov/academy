@@ -1,6 +1,6 @@
 const storage = require("./storage");
 const axios = require("axios");
-
+//sendRequest receives some parameters and makes the requests to the back-end
 exports.sendRequest = function(url, method, data, headers) {
   const baseUrl = "http://localhost:3000";
   data = data || {};

@@ -1,6 +1,6 @@
 const UserModel = require("../models/User");
 const ResultModel = require("../models/Result");
-
+//we send the requested data
 module.exports = {
   resultPost: async (req, res) => {
     const _id = req.params.id.substr(1);

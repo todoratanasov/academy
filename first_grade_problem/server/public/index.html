@@ -16,13 +16,29 @@
     <title>First grade problems</title>
   </head>
   <body>
-    <a href="/">Home</a>
-    <a id="register" href="/user/register">Register</a>
-    <a id="login" href="/user/login">Login</a>
-    <a id="logout" hidden href="/logout">Logout</a>
-    <a id="standings" hidden href="/standings/index">Standings</a>
-    <a id="profile" hidden href="/profile/stats">Personal stats</a>
-    <a id="game" hidden href="/game/types">Game</a>
+    <header>
+      <p id="greeting" class="site-title"></p>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a id="register" href="/user/register">Register</a></li>
+          <li><a id="login" href="/user/login">Login</a></li>
+          <li><a id="logout" class="hidden" href="/logout">Logout</a></li>
+          <li>
+            <a id="standings" class="hidden" href="/standings/index"
+              >Standings</a
+            >
+          </li>
+          <li>
+            <a id="profile" class="hidden" href="/profile/stats"
+              >Personal stats</a
+            >
+          </li>
+          <li><a id="game" class="hidden" href="/game/types">Game</a></li>
+        </ul>
+      </nav>
+    </header>
+
     <span id="greeting"></span>
     <main id="container"></main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>

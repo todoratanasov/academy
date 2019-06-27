@@ -1,16 +1,87 @@
-body{
-    padding: 3rem;
-    background: lime;
+html {
+  background-image: url("./images/background-math.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;
 }
-#container{
-    align-content: center;
+body {
+  padding: 5em;
 }
-.border-field{
-    border: 2px solid blue;
+#main {
+  width: 100%;
+  display: flex;
 }
-.correct-answer{
-    border: 2px solid green;
+.game-buttons-container {
+  display: flex;
+  align-content: center;
 }
-.incorrect-answer{
-    border: 2px solid red;
+body > header:first-of-type {
+  border-bottom: 2px solid #000;
+  display: flex;
+  justify-content: space-between;
+}
+header nav ul {
+  display: flex;
+}
+header > p {
+  color: aliceblue;
+  font-size: 1.5em;
+}
+
+header nav ul li {
+  display: block;
+  padding: 0 0.25rem;
+}
+
+header nav ul li a {
+  display: block;
+  background-color: aliceblue;
+  padding: 0.5em 1rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.2rem;
+}
+
+header nav ul li a:focus,
+header nav ul li a:hover {
+  outline: none;
+  background: black;
+  color: aliceblue;
+}
+
+.game-buttons-container a {
+  display: block;
+  width: 25rem;
+  padding: 3rem;
+  margin: 1rem;
+  font-size: 2rem;
+  background-color: aliceblue;
+  padding: 0.5em 1rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.2rem;
+  text-align: center;
+}
+.game-buttons-container a:hover {
+  outline: none;
+  background: black;
+  color: aliceblue;
+}
+.hidden {
+  display: none;
+}
+#container {
+  align-content: center;
+}
+.border-field {
+  border: 2px solid blue;
+}
+.correct-answer {
+  border: 2px solid green;
+}
+.incorrect-answer {
+  border: 2px solid red;
 }

@@ -10,13 +10,106 @@ html {
 body {
   padding: 5em;
 }
-#main {
-  width: 100%;
-  display: flex;
+#container {
+  align-content: center;
 }
+.result-container {
+  display: inline-block;
+  width: 40rem;
+  align-self: flex-end;
+}
+.homescreen {
+  padding: 1rem;
+  margin: 10rem;
+  font-size: 5rem;
+  color: black !important;
+  background-color: aliceblue;
+  border-radius: 5rem;
+  box-shadow: 10px 10px 94px 14px rgba(255, 255, 255, 1);
+  font-family: "Indie Flower", cursive;
+}
+.result-container > h1,
+.result-container > h3 {
+  text-align: center;
+  align-self: center;
+  color: aliceblue;
+}
+
+.login-form-container,
+.register-form-container,
+#singleGame {
+  display: flex;
+  background-color: aliceblue;
+  padding: 0.5em 1rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.2rem;
+  justify-content: space-evenly;
+}
+#game-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+#game-form,
+#loginForm {
+  background-color: aliceblue;
+  padding: 0.5em 1rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.2rem;
+  align-items: center;
+}
+#game-form > div > span {
+  display: inline-block;
+  width: 2rem;
+}
+#edit-user-button {
+  margin-left: 17.5rem;
+  margin-bottom: 1rem;
+}
+#loginForm > input:last-child,
+#save-result,
+#submit-answers,
+#edit-user-button,
+.game-button {
+  display: inline;
+  background-color: aliceblue;
+  padding: 0.5em 1rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.2rem;
+}
+#loginForm > input:last-child:hover,
+#loginForm > input:last-child:focus,
+#save-result:focus,
+#save-result:hover,
+#submit-answers:focus,
+#submit-answers:hover,
+#edit-user-button:focus,
+#edit-user-button:hover,
+.game-button:hover,
+.game-button:focus,
+.game-buttons-container a:focus,
+.game-buttons-container a:hover,
+header nav ul li a:focus,
+header nav ul li a:hover {
+  outline: none;
+  background: black;
+  color: aliceblue;
+}
+.answer-input {
+  width: 2rem;
+  margin-left: 1rem;
+}
+
 .game-buttons-container {
   display: flex;
-  align-content: center;
+  justify-content: space-evenly;
+}
+#container > h1 {
+  text-align: center;
+  align-self: center;
+  color: aliceblue;
 }
 body > header:first-of-type {
   border-bottom: 2px solid #000;
@@ -44,14 +137,6 @@ header nav ul li a {
   color: black;
   border-radius: 0.2rem;
 }
-
-header nav ul li a:focus,
-header nav ul li a:hover {
-  outline: none;
-  background: black;
-  color: aliceblue;
-}
-
 .game-buttons-container a {
   display: block;
   width: 25rem;
@@ -65,25 +150,20 @@ header nav ul li a:hover {
   border-radius: 0.2rem;
   text-align: center;
 }
-.game-buttons-container a:hover {
-  outline: none;
-  background: black;
-  color: aliceblue;
-}
 .hidden {
-  display: none;
-}
-#container {
-  align-content: center;
-}
-.border-field {
-  border: 2px solid blue;
+  display: none !important;
 }
 .correct-answer {
+  box-sizing: border-box;
+  border-radius: 0.2rem;
   border: 2px solid green;
+  background-color: green;
 }
 .incorrect-answer {
+  box-sizing: border-box;
+  border-radius: 0.2rem;
   border: 2px solid red;
+  background-color: red;
 }
 
 html {

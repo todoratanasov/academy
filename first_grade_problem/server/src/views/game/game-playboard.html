@@ -1,8 +1,8 @@
 <form id="game-form">
   {{#gameArray}}
     <div>
-        <span>{{firstDigit}}</span><span>{{operation}}</span><span>{{secondDigit}}</span>=<input type="text"></input>
+        <span>{{firstDigit}}</span><span>{{operation}}</span><span>{{secondDigit}}</span>=<input class="answer-input" type="text"></input>
     </div>
   {{/gameArray}}
-  <input id="submit-answers" type="submit" value="Submit answers"></input><input id="save-result" type="button" value="Save result" hidden></input>
+  <input id="submit-answers" type="submit" value="Submit answers"></input><input class="hidden" id="save-result" type="button" value="Save result" ></input>
 </form>

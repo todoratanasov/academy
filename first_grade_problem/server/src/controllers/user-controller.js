@@ -43,6 +43,9 @@ module.exports = {
         });
       })
       .catch(error => {
+        res.status(409).json({
+          message: "The user already exists"
+        });
         console.log(
           `This is an error from attempting to register a user: ${error}`
         );

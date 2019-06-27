@@ -1,7 +1,7 @@
 import requester from "../helpers/requester";
 import { saveData } from "../helpers/storage";
 import { deleteData } from "../helpers/storage";
-import{toggle} from "../helpers/toggle-layout";
+import { toggle } from "../helpers/toggle-layout";
 const toastr = require("toastr");
 const container = document.getElementById("container");
 //this just renders the login form
@@ -16,19 +16,19 @@ exports.loginPost = () => {
     event.stopPropagation();
 
     const inputs = event.target.elements;
-    
+
     const email = btoa(inputs["email"].value);
     const password = btoa(inputs["password"].value);
-    if(!email||!password){
+    if (!email || !password) {
       toastr.warning("Please fill all fields");
       return;
     }
-    if(/\s/.test(email)||/\s/.test(password)){
+    if (/\s/.test(email) || /\s/.test(password)) {
       toastr.warning("Please don't use space in the input fields");
       return;
     }
     const data = { email, password };
-    
+
     requester
       .sendRequest("/user/login", "POST", data)
       .then(result => {
@@ -67,21 +67,21 @@ exports.registerPost = html => {
     const email = inputs["email"].value;
     const username = inputs["username"].value;
     const password = inputs["password"].value;
-    if(!email||!username||!password){
+    if (!email || !username || !password) {
       toastr.warning("Please fill all fields");
       return;
     }
-    if(/\s/.test(email)||/\s/.test(username)||/\s/.test(password)){
+    if (/\s/.test(email) || /\s/.test(username) || /\s/.test(password)) {
       toastr.warning("Please don't use space in the input fields");
       return;
     }
 
-    const data = { 
-                email:btoa(email),
-                username:btoa(username),
-                password:btoa(password)
-              };
-    
+    const data = {
+      email: btoa(email),
+      username: btoa(username),
+      password: btoa(password)
+    };
+
     requester
       .sendRequest("/user/register", "POST", data)
       .then(result => {
@@ -95,7 +95,7 @@ exports.registerPost = html => {
         window.location.href = "/";
       })
       .catch(err => {
-        console.log(`this is register error ${err}`);
+        toastr.warning("This user already exists!");
       });
   };
 };

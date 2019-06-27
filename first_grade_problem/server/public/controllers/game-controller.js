@@ -1,7 +1,7 @@
 import requester from "../helpers/requester";
 import gameCreator from "../helpers/game-generator";
 import storage from "../helpers/storage";
-import{toggle} from "../helpers/toggle-layout";
+import { toggle } from "../helpers/toggle-layout";
 const toastr = require("toastr");
 const container = document.getElementById("container");
 //gameIndexGet renders the homescreen of the game
@@ -51,62 +51,65 @@ exports.gameSingleGenerate = html => {
             const answer = +gameArr.gameArray[i].answer;
             const input = inputs[i];
             //we check if there is a whitespace in the input
-            if(/\s/.test(input.value)){
+            if (/\s/.test(input.value)) {
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .setAttribute("class", "border-field")
+                .setAttribute("class", "border-field");
               return;
-            }else{
+            } else {
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .removeAttribute("class", "border-field")
+                .removeAttribute("class", "border-field");
             }
             //we check if there is an alphabetical character
-            if(/[a-z]/.test(input.value.toLowerCase())){
-              toastr.warning("Please don't use alpabetical in the input fields!");
+            if (/[a-z]/.test(input.value.toLowerCase())) {
+              toastr.warning(
+                "Please don't use alpabetical in the input fields!"
+              );
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .setAttribute("class", "border-field")
+                .setAttribute("class", "border-field");
               return;
-            }else{
+            } else {
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .removeAttribute("class", "border-field")
+                .removeAttribute("class", "border-field");
             }
             //we check if all fields are filled
             if (!answer || !input.value) {
               toastr.warning("Please fill all fields");
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .setAttribute("class", "border-field")
+                .setAttribute("class", "border-field");
               return;
-            }else{
+            } else {
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .removeAttribute("class", "border-field")
+                .removeAttribute("class", "border-field");
             }
-            
+
             //we add some icons depending on the provided answers
             if (answer === +input.value) {
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .setAttribute("class", "correct-answer")
+                .setAttribute("class", "correct-answer");
               gameResult.correct++;
             } else {
               document
                 .querySelector(`#game-form>div:nth-child(${i + 1})`)
-                .setAttribute("class", "incorrect-answer")
+                .setAttribute("class", "incorrect-answer");
               gameResult.incorrect++;
             }
-            input.setAttribute("disabled","true");
-            
+            input.setAttribute("disabled", "true");
           }
           //we toggle the buttons on the form
           document
             .getElementById("submit-answers")
-            .setAttribute("hidden", "true");
-         
-          document.getElementById("save-result").removeAttribute("hidden");
+            .setAttribute("class", "hidden");
+
+          document
+            .getElementById("save-result")
+            .removeAttribute("class", "hidden");
         };
         //we add an eventListener to the button and when is clicked a function sends a POST request the with the result as an object to the back-end
         const userId = storage.getData("userId");

@@ -1112,7 +1112,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
+},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -1422,7 +1422,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","process":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","process":"node_modules/process/browser.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
 'use strict';
 
 /**
@@ -12540,7 +12540,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"node_modules/toastr/toastr.js":[function(require,module,exports) {
+},{"process":"node_modules/process/browser.js"}],"node_modules/toastr/toastr.js":[function(require,module,exports) {
 var define;
 /*
  * Toastr
@@ -13133,7 +13133,7 @@ exports.registerPost = function (html) {
       (0, _storage.saveData)("userId", userId);
       window.location.href = "/";
     }).catch(function (err) {
-      console.log("this is register error ".concat(err));
+      toastr.warning("This user already exists!");
     });
   };
 };
@@ -13303,8 +13303,8 @@ exports.gameSingleGenerate = function (html) {
         } //we toggle the buttons on the form
 
 
-        document.getElementById("submit-answers").setAttribute("hidden", "true");
-        document.getElementById("save-result").removeAttribute("hidden");
+        document.getElementById("submit-answers").setAttribute("class", "hidden");
+        document.getElementById("save-result").removeAttribute("class", "hidden");
       }; //we add an eventListener to the button and when is clicked a function sends a POST request the with the result as an object to the back-end
 
 
@@ -13378,7 +13378,7 @@ exports.standingsGet = function (html) {
   (0, _toggleLayout.toggle)();
   container.innerHTML = html;
 };
-},{"../helpers/toggle-layout":"helpers/toggle-layout.js"}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"../helpers/toggle-layout":"helpers/toggle-layout.js"}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -13410,7 +13410,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -13445,23 +13445,23 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"styles/main.css":[function(require,module,exports) {
+},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"styles/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./images\\background-math.jpg":[["background-math.80475661.jpg","styles/images/background-math.jpg"],"styles/images/background-math.jpg"],"_css_loader":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"styles/typography.css":[function(require,module,exports) {
+},{"./images\\background-math.jpg":[["background-math.80475661.jpg","styles/images/background-math.jpg"],"styles/images/background-math.jpg"],"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"styles/typography.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"node_modules/toastr/build/toastr.css":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"node_modules/toastr/build/toastr.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _requester = require("./helpers/requester");
@@ -13532,7 +13532,7 @@ if (currentPath === "/") {
     container.innerHTML = '<div class="wrong-url">404 wrong URL</div>';
   }
 }
-},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js","./controllers/game-controller":"controllers/game-controller.js","./controllers/profile-controller":"controllers/profile-controller.js","./controllers/standings-controller":"controllers/standings-controller.js","./styles/main.css":"styles/main.css","./styles/typography.css":"styles/typography.css","./node_modules/toastr/build/toastr":"node_modules/toastr/build/toastr.css"}],"../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./helpers/requester":"helpers/requester.js","./router/router":"router/router.js","./controllers/user-controller":"controllers/user-controller.js","./controllers/home-controller":"controllers/home-controller.js","./controllers/game-controller":"controllers/game-controller.js","./controllers/profile-controller":"controllers/profile-controller.js","./controllers/standings-controller":"controllers/standings-controller.js","./styles/main.css":"styles/main.css","./styles/typography.css":"styles/typography.css","./node_modules/toastr/build/toastr":"node_modules/toastr/build/toastr.css"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13560,7 +13560,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59940" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51251" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -13735,5 +13735,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/public.e31bb0bc.js.map

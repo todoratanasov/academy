@@ -105,7 +105,8 @@ exports.gameSingleGenerate = html => {
           //we toggle the buttons on the form
           document
             .getElementById("submit-answers")
-            .setAttribute("class", "hidden");
+            .setAttribute("class", "hidden"); 
+            
 
           document
             .getElementById("save-result")

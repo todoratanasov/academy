@@ -63,16 +63,28 @@
       <div class="row justify-content-between">
         <!-- this is the sidebar component -->
 
-        <div class="col-4 sidebar">
-          <ul class="list-group">
-            <li class="list-group-item disabled" aria-disabled="true">
-              Users online
-            </li>
-            <li class="list-group-item"><a href="#">Todor</a></li>
-            <li class="list-group-item"><a href="#">Pesho</a></li>
-            <li class="list-group-item"><a href="#">Gosho</a></li>
-            <li class="list-group-item"><a href="#">Ivan</a></li>
-          </ul>
+        <div class="col-5 sidebar">
+          <div class="card justify-content-center">
+            <div class="card-body">
+              <h5 class="card-title">Name of the event</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Created by: username
+              </h6>
+              <p class="card-text">
+                description of the event
+              </p>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button
+              type="button"
+              class="btn btn-success ask-button"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Ask a question
+            </button>
+          </div>
         </div>
 
         <!-- This is the main question window -->
@@ -204,16 +216,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row justify-content-center">
-        <button
-          type="button"
-          class="btn btn-success ask-button"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Ask a question
-        </button>
       </div>
     </div>
     <div

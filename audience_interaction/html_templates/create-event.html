@@ -29,44 +29,22 @@
       <div class="row col-12 justify-content-center">
         <form class="col-6">
           <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-          </div>
-          <div class="form-group">
-            <label for="username">Username</label>
+            <label for="event-name">Name of the event</label>
             <input
               type="text"
               class="form-control"
-              id="username"
-              aria-describedby="emailHelp"
-              placeholder="Enter username"
+              id="event-name"
+              placeholder="Name"
             />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
+            <label for="event-description">Description of the event</label>
+            <textarea
               class="form-control"
-              id="password"
-              placeholder="Password"
-            />
+              id="event-description"
+              rows="3"
+            ></textarea>
           </div>
-          <div class="form-group">
-            <label for="repeat-password">Repeat password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="repeat-password"
-              placeholder="Repeat password"
-            />
-          </div>
-
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>

@@ -16,7 +16,7 @@ body {
 }
 .message-window {
   height: 85vh;
-  overflow-y: scroll;
+  overflow: auto;
   box-sizing: border-box;
   /* border: 2px solid blue; */
   padding: 0;
@@ -34,4 +34,19 @@ body {
   margin-top: 1rem;
   width: 100%;
   height: 3rem;
+}
+.create-event-btn {
+  width: 15rem;
+  height: 15rem;
+}
+.events-list {
+  box-sizing: border-box;
+  width: 15rem;
+  height: 15rem;
+  border: 2px solid red;
+  overflow: auto;
+}
+.event-li,
+.event-join-btn {
+  display: inline-block;
 }

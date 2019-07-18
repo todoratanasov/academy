@@ -1,5 +1,5 @@
 import requester from "../helpers/requester";
-import{toggle} from "../helpers/toggle-layout";
+import { toggle } from "../helpers/toggle-layout";
 //homeGet sends a GET request to the back-end and renders the returned html
 exports.homeGet = () => {
   requester

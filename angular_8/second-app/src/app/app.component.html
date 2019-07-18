@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+ 
+</div>
+<h2>Here are some links to help you start: </h2>
+<form action="">
+  <input placeholder="add new" [(ngModel)]="val" name="val">
+  <!-- така добавяме евент с клик -->
+  <button type="button" (click)="submit()">Submit</button>
+  <button type="button" (click)="save(i)">Save</button>
+</form>
+<ul>
+  <li>
+    <!-- [class] ще означава, че ще чака променлива title, която ще подадем -->
+    <h2><a [class]="title" target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+    <!-- така си добавяме foreach като let index взима index-a на масива, който подаваме-->
+    <li *ngFor="let num of numbers; let i=index">
+      {{num}} <button (click)="edit(i)">Edit</button>
+      <button (click)="delete(i)">Delete</button>
+    </li>
+  
+</ul>
+
+<router-outlet></router-outlet>

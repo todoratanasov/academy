@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const server = "ds235417.mlab.com:35417";
-const database = "first_grade_problems";
+const server = "ds351827.mlab.com:51827";
+const database = "audience_interaction";
 const user = "atanasov.t";
-const password = "fs23Z9a";
+const password = "a327386";
 //we configure the connection with the DB
 module.exports = {
   database: () =>

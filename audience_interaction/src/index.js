@@ -18,6 +18,11 @@ app.use(bodyParser.json());
 //CORS allow all origins, specific methods and specific headers
 app.use(middleware.cors);
 
+//test
+app.use("/test", (req, res) => {
+  res.json("It works");
+});
+
 //we call the express router
 app.use("/user", routes.user);
 app.use("/event", routes.event);

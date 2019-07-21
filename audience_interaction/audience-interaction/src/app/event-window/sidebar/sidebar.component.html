@@ -1,77 +1,72 @@
-
-    <div class="card justify-content-center">
-      <div class="card-body">
-        <h5 class="card-title">Name of the event</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          Created by: username
-        </h6>
-        <p class="card-text">
-          description of the event
-        </p>
+<div class="card justify-content-center">
+  <div class="card-body">
+    <h5 class="card-title">Event name: {{ event.eventName }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      Created by: {{ event.creatorName }}
+    </h6>
+    <p class="card-text">
+      description of the event: {{ event.eventDescription }}
+    </p>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <button
+    type="button"
+    class="btn btn-success ask-button"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+    Ask a question
+  </button>
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ask a question!</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>
-    <div class="row justify-content-center">
-      <button
-        type="button"
-        class="btn btn-success ask-button"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
-        Ask a question
-      </button>
-    </div>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ask a question!</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"
+              >Enter your question:</label
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            ></textarea>
           </div>
-          <form>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1"
-                  >Enter your question:</label
-                >
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="submit"
-                data-dismiss="modal"
-                class="btn btn-primary"
-                onclick="send()"
-              >
-                Send
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="submit"
+            data-dismiss="modal"
+            class="btn btn-primary"
+            onclick="send()"
+          >
+            Send
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>

@@ -1,8 +1,11 @@
 <div class="row justify-content-between">
-    <div class="col-5 sidebar">
-        <app-sidebar></app-sidebar>
-    </div>    
-    <div class="col-6 message-window">
-        <app-message></app-message>
-    </div>
+  <div class="col-5 sidebar">
+    <app-sidebar [event]="event"></app-sidebar>
+  </div>
+  <div
+    class="col-6 message-window"
+    *ngIf="messages.length > 0 && messages != null"
+  >
+    <app-message [messages]="messages"></app-message>
+  </div>
 </div>

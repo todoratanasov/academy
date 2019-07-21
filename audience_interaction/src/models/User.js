@@ -3,7 +3,6 @@ const encryption = require("../util/encription");
 const Schema = mongoose.Schema;
 //we set the parameters of the User model that saves data in the DB
 const userSchema = new Schema({
-  email: { type: Schema.Types.String, required: true, unique: true },
   hashedPassword: { type: Schema.Types.String, required: true },
   username: { type: Schema.Types.String, required: true, unique: true },
   salt: { type: Schema.Types.String, required: true },

@@ -15,6 +15,7 @@ module.exports = {
         });
       })
       .catch(err => {
+        console.log(err);
         res.status(409).json({
           message: `There is a problem with registering an event ${err}`
         });

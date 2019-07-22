@@ -40,7 +40,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form>
+      <form (ngSubmit)="sendMessage(messageForm)" #messageForm="ngForm">
         <div class="modal-body">
           <div class="form-group">
             <label for="exampleFormControlTextarea1"
@@ -50,6 +50,8 @@
               class="form-control"
               id="exampleFormControlTextarea1"
               rows="3"
+              ngModel
+              name="message"
             ></textarea>
           </div>
         </div>
@@ -57,12 +59,8 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button
-            type="submit"
-            data-dismiss="modal"
-            class="btn btn-primary"
-            onclick="send()"
-          >
+          <!--  data-dismiss="modal" -->
+          <button type="submit" class="btn btn-primary">
             Send
           </button>
         </div>

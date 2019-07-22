@@ -10,6 +10,9 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const middleware = require("./middleware");
 
+const MessageModel = require("./models/Message");
+const EventModel = require("./models/Event");
+
 //we connect to the database
 database.database();
 //we make the request parameters easy to use
@@ -47,14 +50,37 @@ io.on("connection", socket => {
 
   // we receive "message" event from the front-end and that is what socket.on listens for and activate this
   // the contents of that message and then echo it back to our client
-  socket.on("message", message => {
+  socket.on("message", async message => {
     //TODO create a model and store the message in the DB. Push the message's _id into the event in the DB. Return to the front-end the message text, username and the _id of the message
+    const { content, sender, senderId, eventId } = JSON.parse(message);
 
+    const eventDb = await EventModel.findById(eventId);
+    MessageModel.create({
+      sender: senderId,
+      event: eventId,
+      content
+    }).then(messageDb => {
+      const _id = messageDb._id;
+      MessageModel.findById(_id)
+        .populate({
+          path: "sender"
+        })
+        .then(messagePopulated => {
+          io.emit("message", { type: "new-message", text: messagePopulated });
+          eventDb.messages.push(_id);
+          eventDb.save();
+        });
+    });
     console.log("Message Received: " + message);
     //with io.emit we send the message to all connected sockets
-    io.emit("message", { type: "new-message", text: message });
   });
+  socket.on("delete", async id => {
+    const messageDB = await MessageModel.findById(id);
+    messageDB.isActive = false;
+    messageDB.save();
 
+    console.log(id);
+  });
   socket.on("vote", vote => {
     //TODO find the message in the DB and add upvote/downvote. Return to the front-end message _id, upvotes and downvotes
     console.log("Vote Received: " + vote);

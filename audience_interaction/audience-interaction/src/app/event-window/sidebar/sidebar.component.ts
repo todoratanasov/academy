@@ -1,15 +1,36 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { ChatService } from "../../shared/chat.service";
+import { NgForm } from "@angular/forms";
+import { StorageService } from "src/app/shared/storage.service";
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.css"]
 })
 export class SidebarComponent implements OnInit {
-  @Input() event:{creatorName:string, eventDescription:string,eventName:string};
-  constructor() { }
+  @ViewChild("messageForm", { static: false }) messageForm: NgForm;
+  @Input() event: {
+    creatorName: string;
+    eventDescription: string;
+    eventName: string;
+    currentEventId: string;
+  };
 
-  ngOnInit() {
+  data = {
+    content: "",
+    sender: "",
+    eventId: "",
+    senderId: ""
+  };
+  constructor(private chat: ChatService, private storage: StorageService) {}
+
+  ngOnInit() {}
+
+  sendMessage() {
+    this.data.sender = this.storage.getData("username") || "unknown";
+    this.data.senderId = this.storage.getData("userId");
+    this.data.content = this.messageForm.value.message;
+    this.data.eventId = this.event.currentEventId;
+    this.chat.sendMsg(this.data);
   }
-
 }

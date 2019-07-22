@@ -74,12 +74,35 @@ io.on("connection", socket => {
     console.log("Message Received: " + message);
     //with io.emit we send the message to all connected sockets
   });
-  socket.on("delete", async id => {
-    const messageDB = await MessageModel.findById(id);
+  socket.on("delete", async data => {
+    console.log(data);
+    const { messageId, eventId } = JSON.parse(data);
+    const messageDB = await MessageModel.findById({ _id: messageId });
     messageDB.isActive = false;
     messageDB.save();
-
-    console.log(id);
+    EventModel.findById(eventId)
+      .populate("creator")
+      .populate({ path: "messages", populate: { path: "sender" } })
+      .then(async result => {
+        const mappedMessages = await result.messages.filter(message => {
+          if (message.isActive) {
+            return message;
+          }
+        });
+        const eventData = {
+          eventName: result.name,
+          eventDescription: result.description,
+          creatorName: result.creator.username,
+          messages: mappedMessages
+        };
+        io.emit("delete", { type: "new-message", text: eventData });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(404).json({
+          message: `There was an error from retreiving the event data - ${err}`
+        });
+      });
   });
   socket.on("vote", vote => {
     //TODO find the message in the DB and add upvote/downvote. Return to the front-end message _id, upvotes and downvotes

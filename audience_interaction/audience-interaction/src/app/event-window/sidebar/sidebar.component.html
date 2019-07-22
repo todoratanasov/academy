@@ -42,7 +42,7 @@
       </div>
       <form (ngSubmit)="sendMessage(messageForm)" #messageForm="ngForm">
         <div class="modal-body">
-          <div class="form-group">
+          <div class="form-group" *ngIf="!messageSend">
             <label for="exampleFormControlTextarea1"
               >Enter your question:</label
             >
@@ -54,13 +54,16 @@
               name="message"
             ></textarea>
           </div>
+          <div *ngIf="messageSend">
+            Message was send!
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">
             Close
           </button>
           <!--  data-dismiss="modal" -->
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" *ngIf="!messageSend">
             Send
           </button>
         </div>

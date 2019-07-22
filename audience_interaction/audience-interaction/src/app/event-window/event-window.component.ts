@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RequestService } from "../shared/request.service";
 import { ChatService } from "../shared/chat.service";
+import { DeleteService } from "../shared/delete.service";
 
 @Component({
   selector: "app-event-window",
@@ -24,13 +25,24 @@ export class EventWindowComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private requester: RequestService,
-    private chat: ChatService
+    private chat: ChatService,
+    private deleteService: DeleteService
   ) {}
   ngOnInit() {
     //with one request information about the event and all messagess will be received
     this.chat.messages.subscribe(msg => {
       this.messages.push(msg.text);
     });
+
+    this.deleteService.messages.subscribe(result => {
+      console.log(result);
+      this.event.creatorName = result.text.creatorName;
+      this.event.eventDescription = result.text.eventDescription;
+      this.event.eventName = result.text.eventName;
+      this.event.currentEventId = this.eventId;
+      this.messages = result.text.messages;
+    });
+
     if (this.firstEmit === true) {
       this.firstEmit = false;
       this.eventId = this.route.snapshot.params["id"];

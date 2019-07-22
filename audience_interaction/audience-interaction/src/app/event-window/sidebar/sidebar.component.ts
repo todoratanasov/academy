@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
     eventName: string;
     currentEventId: string;
   };
-
+  messageSend = false;
   data = {
     content: "",
     sender: "",
@@ -25,8 +25,13 @@ export class SidebarComponent implements OnInit {
   constructor(private chat: ChatService, private storage: StorageService) {}
 
   ngOnInit() {}
-
+  onClose() {
+    setTimeout(() => {
+      this.messageSend = false;
+    }, 1000);
+  }
   sendMessage() {
+    this.messageSend = true;
     this.data.sender = this.storage.getData("username") || "unknown";
     this.data.senderId = this.storage.getData("userId");
     this.data.content = this.messageForm.value.message;

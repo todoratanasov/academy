@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { RequestService } from "../shared/request.service";
 import { StorageService } from "../shared/storage.service";
 import { Router } from "@angular/router";
+import { AuthenticationService } from '../shared/authentication.service';
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private requester: RequestService,
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private authentication: AuthenticationService
   ) {}
   onSubmit() {
     this.password = this.registerForm.value.password;
@@ -34,7 +36,8 @@ export class RegisterComponent implements OnInit {
         .then(result => {
           this.storage.saveData("username", result.data.username);
           this.storage.saveData("token", result.data.token);
-          this.storage.saveData("userId", result.data.userId);
+          this.storage.saveData("userId", result.data.userId);          
+          this.authentication.loggedEmmiter.next(true);
           this.router.navigate(["/"]);
         })
         .catch(err => {

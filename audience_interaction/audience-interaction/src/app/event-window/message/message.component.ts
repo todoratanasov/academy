@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { DeleteService } from "src/app/shared/delete.service";
+import { CloseEventService } from 'src/app/shared/close-event.service';
 
 @Component({
   selector: "app-message",
@@ -12,12 +13,19 @@ export class MessageComponent implements OnInit {
     messageId: "",
     eventId: ""
   };
-  constructor(private deleteMessage: DeleteService) {}
+  @Input() isCreator;
+  isActive=true;
+  constructor(private deleteMessage: DeleteService,private closeEvent: CloseEventService) {}
 
   onDelete(id, event) {
     this.data.messageId = id;
     this.data.eventId = event;
     this.deleteMessage.deleteMsg(this.data);
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.closeEvent.messages.subscribe(response => {
+      console.log(response.text);
+      this.isActive=response.text;
+    });
+  }
 }

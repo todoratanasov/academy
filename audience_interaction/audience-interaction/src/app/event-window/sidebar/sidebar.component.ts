@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { ChatService } from "../../shared/chat.service";
 import { NgForm } from "@angular/forms";
 import { StorageService } from "src/app/shared/storage.service";
+import { CloseEventService } from 'src/app/shared/close-event.service';
 @Component({
   selector: "app-sidebar",
   templateUrl: "./sidebar.component.html",
@@ -15,6 +16,7 @@ export class SidebarComponent implements OnInit {
     eventName: string;
     currentEventId: string;
   };
+  @Input() isCreator;
   messageSend = false;
   data = {
     content: "",
@@ -22,13 +24,22 @@ export class SidebarComponent implements OnInit {
     eventId: "",
     senderId: ""
   };
-  constructor(private chat: ChatService, private storage: StorageService) {}
+  isActive=true;
+  constructor(private chat: ChatService, private storage: StorageService, private closeEvent: CloseEventService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.closeEvent.messages.subscribe(response => {
+      this.isActive=response.text;
+    });
+  }
   onClose() {
     setTimeout(() => {
       this.messageSend = false;
     }, 1000);
+  }
+  onCloseEvent(){
+    this.data.eventId = this.event.currentEventId;
+    this.closeEvent.closeEvent(this.data);
   }
   sendMessage() {
     this.messageSend = true;

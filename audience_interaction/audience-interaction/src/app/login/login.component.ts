@@ -3,6 +3,7 @@ import { RequestService } from "../shared/request.service";
 import { StorageService } from "../shared/storage.service";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AuthenticationService } from '../shared/authentication.service';
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private requester: RequestService,
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private authentication: AuthenticationService
   ) {}
 
   onTest() {
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.storage.saveData("username", result.data.username);
         this.storage.saveData("token", result.data.token);
         this.storage.saveData("userId", result.data.userId);
+        this.authentication.loggedEmmiter.next(true);
         this.router.navigate(["/"]);
       })
       .catch(error => {

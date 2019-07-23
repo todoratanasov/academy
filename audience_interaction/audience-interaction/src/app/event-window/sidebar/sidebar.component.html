@@ -15,8 +15,17 @@
     class="btn btn-success ask-button"
     data-toggle="modal"
     data-target="#exampleModal"
+    *ngIf="isActive"
   >
     Ask a question
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger ask-button"
+    *ngIf="isCreator"
+    (click)="onCloseEvent()"
+  >
+    Close the event
   </button>
 </div>
 <div

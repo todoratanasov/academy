@@ -36,6 +36,7 @@ module.exports = {
           eventName: result.name,
           eventDescription: result.description,
           creatorName: result.creator.username,
+          creatorId: result.creator._id,
           messages: mappedMessages
         });
       })
@@ -48,9 +49,14 @@ module.exports = {
   },
   activeEventsGet: (req, res) => {
     EventModel.find({})
-      .then(eventsDb => {
+      .then(async eventsDb => {
+        const mappedEvents = await eventsDb.filter((event)=>{
+          if(event.isActive){
+            return event;
+          }
+        })
         res.status(201).json({
-          eventsDb
+          mappedEvents
         });
       })
       .catch(err => {

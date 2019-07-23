@@ -21,6 +21,7 @@ import { AuthenticationService } from "./shared/authentication.service";
 import { WebsocketService } from './shared/websocket.service';
 import { ChatService } from './shared/chat.service';
 import { DeleteService } from './shared/delete.service';
+import { CloseEventService } from './shared/close-event.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import { DeleteService } from './shared/delete.service';
     HomeComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [RequestService, StorageService, AuthenticationService,WebsocketService,ChatService,DeleteService],
+  providers: [RequestService, StorageService, AuthenticationService,WebsocketService,ChatService,DeleteService,CloseEventService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

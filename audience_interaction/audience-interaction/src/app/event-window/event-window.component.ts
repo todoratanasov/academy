@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { RequestService } from "../shared/request.service";
 import { ChatService } from "../shared/chat.service";
 import { DeleteService } from "../shared/delete.service";
+import { StorageService } from '../shared/storage.service';
 
 @Component({
   selector: "app-event-window",
@@ -22,11 +23,13 @@ export class EventWindowComponent implements OnInit {
 
   //messagess will be passed to the message.component
   messages = [];
+  isCreator=false;
   constructor(
     private route: ActivatedRoute,
     private requester: RequestService,
     private chat: ChatService,
-    private deleteService: DeleteService
+    private deleteService: DeleteService,
+    private storageService: StorageService
   ) {}
   ngOnInit() {
     //with one request information about the event and all messagess will be received
@@ -54,6 +57,9 @@ export class EventWindowComponent implements OnInit {
           this.event.eventName = result.data.eventName;
           this.event.currentEventId = this.eventId;
           this.messages = result.data.messages;
+          if(this.storageService.getData("userId")===result.data.creatorId){
+            this.isCreator=true;
+          }
         });
     }
   }

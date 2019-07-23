@@ -75,7 +75,6 @@ io.on("connection", socket => {
     //with io.emit we send the message to all connected sockets
   });
   socket.on("delete", async data => {
-    console.log(data);
     const { messageId, eventId } = JSON.parse(data);
     const messageDB = await MessageModel.findById({ _id: messageId });
     messageDB.isActive = false;
@@ -104,11 +103,14 @@ io.on("connection", socket => {
         });
       });
   });
-  socket.on("vote", vote => {
-    //TODO find the message in the DB and add upvote/downvote. Return to the front-end message _id, upvotes and downvotes
-    console.log("Vote Received: " + vote);
-    //with io.emit we send the message to all connected sockets
-    io.emit("vote", { type: "new-message", text: message });
+  socket.on("close", async data => {
+    
+    const _id = JSON.parse(data).eventId;
+    const event=await EventModel.findById({_id});
+    event.isActive = false;
+    event.save();
+
+    io.emit("close", { type: "new-message", text: false });
   });
 });
 

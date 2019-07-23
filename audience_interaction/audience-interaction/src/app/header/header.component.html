@@ -27,6 +27,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLink="/login"
+        *ngIf="!isLogged"
         >Login</a
       >
       <a
@@ -35,6 +36,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLink="/register"
+        *ngIf="!isLogged"
         >Register</a
       >
       <a
@@ -44,6 +46,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         routerLink="/s"
         (click)="onLogout()"
+        *ngIf="isLogged"
         >Logout</a
       >
       <a
@@ -52,6 +55,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLink="/event"
+        *ngIf="isLogged"
         >Event</a
       >
     </div>

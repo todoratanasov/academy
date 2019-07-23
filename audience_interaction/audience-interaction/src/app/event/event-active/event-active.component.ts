@@ -12,7 +12,7 @@ export class EventActiveComponent implements OnInit {
 
   ngOnInit() {
     this.requester.sendRequest("/event/events", "GET", {}, {}).then(result => {
-      this.events = result.data.eventsDb;
+      this.events = result.data.mappedEvents;
     });
   }
 }

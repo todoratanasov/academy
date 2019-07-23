@@ -1,7 +1,8 @@
 import { Component, OnInit, Output } from "@angular/core";
-import { StorageService } from "../shared/storage.service";
 import { AuthenticationService } from "../shared/authentication.service";
 import { Router } from "@angular/router";
+import { StorageService } from '../shared/storage.service';
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -9,10 +10,23 @@ import { Router } from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
   @Output() isLogged = false;
-  constructor(private logout: AuthenticationService, private router: Router) {}
+  constructor( private router: Router, private authentication: AuthenticationService, private storageService: StorageService) {}
+
   onLogout() {
-    this.logout.onLogout();
-    this.router.navigate(["/"]);
+    this.authentication.loggedEmmiter.subscribe(logged=>{
+      this.isLogged=logged});
+      this.storageService.deleteData(null);
+      this.router.navigate(["/login"]);
+      this.authentication.loggedEmmiter.next(false);
   }
-  ngOnInit() {}
+
+  ngOnInit() {
+    if(this.storageService.getData("userId")){
+      this.isLogged=true;}
+    this.authentication.loggedEmmiter.subscribe(logged=>{
+      this.isLogged=logged;
+      
+    });
+    
+  }
 }

@@ -18,10 +18,11 @@ import { HomeComponent } from "./home/home.component";
 import { RequestService } from "./shared/request.service";
 import { StorageService } from "./shared/storage.service";
 import { AuthenticationService } from "./shared/authentication.service";
-import { WebsocketService } from './shared/websocket.service';
-import { ChatService } from './shared/chat.service';
-import { DeleteService } from './shared/delete.service';
-import { CloseEventService } from './shared/close-event.service';
+import { WebsocketService } from "./shared/websocket.service";
+import { ChatService } from "./shared/chat.service";
+import { DeleteService } from "./shared/delete.service";
+import { CloseEventService } from "./shared/close-event.service";
+import { VotingService } from './shared/voting.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,16 @@ import { CloseEventService } from './shared/close-event.service';
     HomeComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [RequestService, StorageService, AuthenticationService,WebsocketService,ChatService,DeleteService,CloseEventService],
+  providers: [
+    RequestService,
+    StorageService,
+    AuthenticationService,
+    WebsocketService,
+    ChatService,
+    DeleteService,
+    CloseEventService,
+    VotingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

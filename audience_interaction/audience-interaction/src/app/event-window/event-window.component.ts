@@ -3,7 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { RequestService } from "../shared/request.service";
 import { ChatService } from "../shared/chat.service";
 import { DeleteService } from "../shared/delete.service";
-import { StorageService } from '../shared/storage.service';
+import { StorageService } from "../shared/storage.service";
+import { VotingService } from "../shared/voting.service";
 
 @Component({
   selector: "app-event-window",
@@ -23,13 +24,14 @@ export class EventWindowComponent implements OnInit {
 
   //messagess will be passed to the message.component
   messages = [];
-  isCreator=false;
+  isCreator = false;
   constructor(
     private route: ActivatedRoute,
     private requester: RequestService,
     private chat: ChatService,
     private deleteService: DeleteService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private voteService: VotingService
   ) {}
   ngOnInit() {
     //with one request information about the event and all messagess will be received
@@ -37,8 +39,15 @@ export class EventWindowComponent implements OnInit {
       this.messages.push(msg.text);
     });
 
+    this.voteService.messages.subscribe(response => {
+      this.event.creatorName = response.text.creatorName;
+      this.event.eventDescription = response.text.eventDescription;
+      this.event.eventName = response.text.eventName;
+      this.event.currentEventId = this.eventId;
+      this.messages = response.text.messages;
+    });
+
     this.deleteService.messages.subscribe(result => {
-      console.log(result);
       this.event.creatorName = result.text.creatorName;
       this.event.eventDescription = result.text.eventDescription;
       this.event.eventName = result.text.eventName;
@@ -57,8 +66,8 @@ export class EventWindowComponent implements OnInit {
           this.event.eventName = result.data.eventName;
           this.event.currentEventId = this.eventId;
           this.messages = result.data.messages;
-          if(this.storageService.getData("userId")===result.data.creatorId){
-            this.isCreator=true;
+          if (this.storageService.getData("userId") === result.data.creatorId) {
+            this.isCreator = true;
           }
         });
     }

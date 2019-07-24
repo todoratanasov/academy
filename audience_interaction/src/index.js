@@ -103,14 +103,53 @@ io.on("connection", socket => {
         });
       });
   });
+
   socket.on("close", async data => {
-    
     const _id = JSON.parse(data).eventId;
-    const event=await EventModel.findById({_id});
+    const event = await EventModel.findById({ _id });
     event.isActive = false;
     event.save();
 
     io.emit("close", { type: "new-message", text: false });
+  });
+
+  socket.on("vote", async data => {
+    const { messageId, userId, vote } = JSON.parse(data);
+
+    const message = await MessageModel.findById({ _id: messageId });
+    if (vote === 1) {
+      message.upvote += 1;
+      message.votedUsers.push(userId);
+    } else {
+      message.downvote -= 1;
+      message.votedUsers.push(userId);
+    }
+    message.save();
+    const eventId = message.event;
+
+    EventModel.findById(eventId)
+      .populate("creator")
+      .populate({ path: "messages", populate: { path: "sender" } })
+      .then(async result => {
+        const mappedMessages = await result.messages.filter(message => {
+          if (message.isActive) {
+            return message;
+          }
+        });
+        const eventData = {
+          eventName: result.name,
+          eventDescription: result.description,
+          creatorName: result.creator.username,
+          messages: mappedMessages
+        };
+        io.emit("vote", { type: "new-message", text: eventData });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(404).json({
+          message: `There was an error from retreiving the event data - ${err}`
+        });
+      });
   });
 });
 

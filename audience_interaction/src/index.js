@@ -29,7 +29,7 @@ app.use("/test", (req, res) => {
 //we call the express router
 app.use("/user", routes.user);
 app.use("/event", routes.event);
-
+app.use("/home", routes.home);
 //we check for a wrong url
 app.use((req, res, next) => {
   res.status(404).send("ooops wrong URL");
@@ -55,10 +55,12 @@ io.on("connection", socket => {
     const { content, sender, senderId, eventId } = JSON.parse(message);
 
     const eventDb = await EventModel.findById(eventId);
+
     MessageModel.create({
       sender: senderId,
       event: eventId,
-      content
+      content,
+      time: new Date()
     }).then(messageDb => {
       const _id = messageDb._id;
       MessageModel.findById(_id)

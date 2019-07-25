@@ -2,8 +2,10 @@
 const user = require("./user-controller");
 const event = require("./event-controller");
 const message = require("./message-controller");
+const home = require("./home-controller");
 module.exports = {
   user,
   event,
-  message
+  message,
+  home
 };

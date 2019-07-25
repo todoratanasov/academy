@@ -11,6 +11,7 @@ export class CloseEventService {
     this.messages = <Subject<any>>wsService.connect("close");
   }
 
+  //we activate close event
   closeEvent(eventId) {
     this.messages.next(eventId);
   }

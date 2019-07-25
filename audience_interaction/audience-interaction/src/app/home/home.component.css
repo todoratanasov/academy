@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Special+Elite&display=swap");
+
+.first-row {
+  height: 40vh;
+}
+.second-row {
+  height: 40vh;
+}
+.first-column {
+  font-family: "Special Elite", cursive;
+  text-align: center;
+  font-size: 3rem;
+  color: #026670;
+  text-shadow: 3px 5px 2px #fef9c7;
+}
+.title-counter-column {
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Special Elite", cursive;
+  color: #026670;
+  text-shadow: 3px 5px 2px #fef9c7;
+}
+.counter {
+  color: black;
+}

@@ -10,7 +10,7 @@ export class DeleteService {
   constructor(private wsService: WebsocketService) {
     this.messages = <Subject<any>>wsService.connect("delete");
   }
-
+  //we activate delete event
   deleteMsg(msg) {
     this.messages.next(msg);
   }

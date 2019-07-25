@@ -1,10 +1,13 @@
 <div class="container" *ngIf="events?.length > 0">
-  <li class="list-group-item col-12" *ngFor="let event of events">
+  <li
+    class="list-group-item col-12 active-event-container"
+    *ngFor="let event of events"
+  >
     <div class="col-6 event-li">{{ event.name }}</div>
-    <div class="col-5 event-join-btn">
+    <div class="col-5 event-join-btn-container">
       <button
         type="button"
-        class="btn btn-success"
+        class="btn btn-success event-join-btn"
         routerLink="/window/{{ event._id }}"
       >
         Join this event

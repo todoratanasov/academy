@@ -1,0 +1,23 @@
+.event-info {
+  background-color: #9fedd7;
+}
+.ask-button {
+  margin-top: 1rem;
+  width: 100%;
+  height: 3rem;
+  background-color: #026670;
+}
+.close-event-button {
+  margin-top: 1rem;
+  width: 100%;
+  height: 3rem;
+}
+.question-modal {
+  background-color: #fce181;
+}
+.question-area {
+  background-color: #fef9c7;
+}
+.send-msg-btn {
+  background-color: #026670;
+}

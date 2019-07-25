@@ -1,0 +1,12 @@
+.main-navbar {
+  background-color: #fce181;
+  border-radius: 2px;
+}
+.image-container {
+  overflow: hidden;
+  height: 60px;
+}
+.image-logo {
+  position: relative;
+  margin-top: -60px;
+}

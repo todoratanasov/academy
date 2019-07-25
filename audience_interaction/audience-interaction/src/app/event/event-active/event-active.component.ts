@@ -11,6 +11,7 @@ export class EventActiveComponent implements OnInit {
   constructor(private requester: RequestService) {}
 
   ngOnInit() {
+    //here we get all avtive events from the backend
     this.requester.sendRequest("/event/events", "GET", {}, {}).then(result => {
       this.events = result.data.mappedEvents;
     });

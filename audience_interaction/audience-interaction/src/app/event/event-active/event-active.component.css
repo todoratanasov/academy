@@ -1,0 +1,11 @@
+.active-event-container {
+  background-color: #fef9c7;
+  border-radius: 2px;
+}
+.event-li,
+.event-join-btn-container {
+  display: inline-block;
+}
+.event-join-btn {
+  background-color: #026670;
+}

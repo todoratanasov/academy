@@ -10,7 +10,7 @@ export class VotingService {
   constructor(private wsService: WebsocketService) {
     this.messages = <Subject<any>>wsService.connect("vote");
   }
-
+  //we pass the data when someone votes
   messageVote(messageId) {
     this.messages.next(messageId);
   }

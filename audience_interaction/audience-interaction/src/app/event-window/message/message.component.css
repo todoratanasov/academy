@@ -1,0 +1,27 @@
+.message-window {
+  height: 85vh;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 0;
+  margin-right: 1rem;
+}
+.upvote-btn {
+  border-color: #026670;
+}
+.downvote-btn {
+  border-color: #d9534f;
+}
+.upvote-btn:hover {
+  background-color: #026670;
+  color: white;
+}
+.downvote-btn:hover {
+  background-color: #d9534f;
+  color: white;
+}
+.msg-container {
+  background-color: #fef9c7;
+}
+.msg-date {
+  font-size: 0.7rem;
+}

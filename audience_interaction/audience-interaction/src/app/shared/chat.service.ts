@@ -11,8 +11,7 @@ export class ChatService {
     this.messages = <Subject<any>>wsService.connect("message");
   }
 
-  // Our simplified interface for sending
-  // messages back to our socket.io server
+  //we send a message to the backend
   sendMsg(msg) {
     this.messages.next(msg);
   }

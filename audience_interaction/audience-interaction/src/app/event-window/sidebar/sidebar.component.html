@@ -1,11 +1,13 @@
 <div class="card justify-content-center">
-  <div class="card-body">
-    <h5 class="card-title">Event name: {{ event.eventName }}</h5>
+  <div class="card-body event-info">
+    <h5 class="card-title">
+      Event name: <strong>{{ event.eventName }}</strong>
+    </h5>
     <h6 class="card-subtitle mb-2 text-muted">
       Created by: {{ event.creatorName }}
     </h6>
     <p class="card-text">
-      description of the event: {{ event.eventDescription }}
+      Description of the event: {{ event.eventDescription }}
     </p>
   </div>
 </div>
@@ -21,7 +23,7 @@
   </button>
   <button
     type="button"
-    class="btn btn-danger ask-button"
+    class="btn btn-danger close-event-button"
     *ngIf="isCreator"
     (click)="onCloseEvent()"
   >
@@ -29,15 +31,15 @@
   </button>
 </div>
 <div
-  class="modal fade"
+  class="modal fade "
   id="exampleModal"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content question-modal">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Ask a question!</h5>
         <button
@@ -56,7 +58,7 @@
               >Enter your question:</label
             >
             <textarea
-              class="form-control"
+              class="form-control question-area"
               id="exampleFormControlTextarea1"
               rows="3"
               ngModel
@@ -68,11 +70,16 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            (click)="onClose()"
+          >
             Close
           </button>
           <!--  data-dismiss="modal" -->
-          <button type="submit" class="btn btn-primary" *ngIf="!messageSend">
+          <button type="submit" class="btn btn-primary send-msg-btn" *ngIf="!messageSend">
             Send
           </button>
         </div>

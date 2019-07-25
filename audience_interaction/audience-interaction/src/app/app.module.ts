@@ -22,7 +22,7 @@ import { WebsocketService } from "./shared/websocket.service";
 import { ChatService } from "./shared/chat.service";
 import { DeleteService } from "./shared/delete.service";
 import { CloseEventService } from "./shared/close-event.service";
-import { VotingService } from './shared/voting.service';
+import { VotingService } from "./shared/voting.service";
 @NgModule({
   declarations: [
     AppComponent,

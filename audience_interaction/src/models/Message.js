@@ -7,6 +7,7 @@ const messageSchema = new Schema({
   content: { type: Schema.Types.String, required: true },
   upvote: { type: Schema.Types.Number, default: 0 },
   downvote: { type: Schema.Types.Number, default: 0 },
+  time: { type: Schema.Types.Number },
   votedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   isActive: { type: Schema.Types.Boolean, default: true }
 });

@@ -1,7 +1,18 @@
-<div class="card" *ngFor="let message of messages" [hidden]="!isActive">
-  <div class="container">
-    <h5 class="card-header card-title">
-      This question is from <strong>{{ message.sender.username }}</strong>
+<div
+  class="card msg-container"
+  *ngFor="let message of messages"
+  [hidden]="!isActive"
+>
+  <div class="container ">
+    <h5 class="row card-header card-title justify-content-between">
+      <span>
+          Question from: 
+          <strong>{{ message.sender.username }}</strong>
+      </span>
+
+      <span class="msg-date">{{
+        message.time | date: "dd.LLL.yyy HH:mm:ss"
+      }}</span>
     </h5>
   </div>
   <div class="card-body">
@@ -11,25 +22,26 @@
     <div class="row justify-content-between">
       <button
         type="button"
-        class="btn btn-outline-success col-2"
+        class="btn btn-outline-success upvote-btn col-3"
         (click)="onVote(1, message._id)"
         [disabled]="message?.votedUsers?.includes(voteData.userId)"
       >
-        Up <span class="badge badge-light">{{ message.upvote }}</span>
+        Upvote<span class="badge badge-light">{{ message.upvote }}</span>
       </button>
       <!--  -->
       <button
         type="button"
-        class="btn btn-outline-danger col-2"
+        class="btn btn-outline-danger downvote-btn col-3"
         (click)="onVote(-1, message._id)"
         [disabled]="message?.votedUsers?.includes(voteData.userId)"
       >
-        Down <span class="badge badge-light">{{ message.downvote }}</span>
+        Downvote
+        <span class="badge badge-light">{{ message.downvote }}</span>
       </button>
       <!--  -->
       <button
         type="button"
-        class="btn btn-outline-dark col-2"
+        class="btn btn-outline-dark col-3"
         (click)="onDelete(message._id, message.event)"
         *ngIf="isCreator"
       >

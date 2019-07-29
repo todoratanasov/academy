@@ -2,6 +2,8 @@
 
 It's a small To_do application
 
+![Homepage view](/to_do.png)
+
 #### Starting the app
 
 1. Type in the **...academy\To_do\database> json-server --watch database.json**  to initiate the database;

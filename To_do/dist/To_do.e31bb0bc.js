@@ -2050,7 +2050,7 @@ home.tasks(); //here we add an event to the Add button
 
 var addTaskButton = document.getElementById("addTask");
 addTaskButton.addEventListener("click", taskController.addTaskPost);
-},{"./controllers/task-controller":"controllers/task-controller.js","./views/home":"views/home.js","./public/css/typography.css":"public/css/typography.css","./public/css/styles.css":"public/css/styles.css"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./controllers/task-controller":"controllers/task-controller.js","./views/home":"views/home.js","./public/css/typography.css":"public/css/typography.css","./public/css/styles.css":"public/css/styles.css"}],"../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2078,7 +2078,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62670" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51779" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -2253,5 +2253,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../../Users/x/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/To_do.e31bb0bc.js.map

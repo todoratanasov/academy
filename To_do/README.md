@@ -2,7 +2,7 @@
 
 It's a small To_do application
 
-![Homepage view](/todo.png)
+<img src="./todo.png" width="600" height="480">
 
 #### Starting the app
 

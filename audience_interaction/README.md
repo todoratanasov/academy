@@ -2,6 +2,8 @@
 
 Small app where you can send and receive live questions while someone is giving an online lecture.
 
+![Homepage view](/lecturers.png)
+
 ####Start the app
 
 1. Type in dir **...audience_interaction\src> npm start** in order to start the back-end;

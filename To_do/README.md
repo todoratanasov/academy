@@ -2,7 +2,7 @@
 
 It's a small To_do application
 
-![Homepage view](/to_do.png)
+![Homepage view](/todo.png)
 
 #### Starting the app
 

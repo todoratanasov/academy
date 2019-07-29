@@ -2,6 +2,8 @@
 
 Small app where you can solve mathematical problems.
 
+<img src="./server/first_grade.png" width="600" height="480">
+
 #### Starting the app
 
 1. Type in dir **...server/src>npm start** and the back-end will start with nodemon.

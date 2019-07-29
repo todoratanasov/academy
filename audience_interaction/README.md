@@ -2,7 +2,7 @@
 
 Small app where you can send and receive live questions while someone is giving an online lecture.
 
-<img src="./lecturers.png" width="100" height="600" width="800">
+<img src="./lecturers.png" width="600" height="480">
 
 ####Start the app
 

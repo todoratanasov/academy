@@ -4,9 +4,9 @@ It's a small To_do application
 
 #### Starting the app
 
-1. Type in the ...To_do\database> json-server --watch database.json to start the database;
+1. Type in the **...academy\To_do\database> json-server --watch database.json**  to initiate the database;
 
-2. Type in the ...academy\To_do> parcel index.html to start the app
+2. Type in the **...academy\To_do>npm start** to start the app;
 
 #### Technologies used
 

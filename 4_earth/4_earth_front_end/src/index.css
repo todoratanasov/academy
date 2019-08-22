@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
-html{
-  font-family: 'Acme', sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
+html {
+  font-family: "Acme", sans-serif;
   color: #c1c8e4;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 body {
   margin: 0;
 }
-.App{
+.App {
   display: flex;
   flex-wrap: wrap;
-  margin:0;
+  margin: 0;
 }
-.headerContainer{
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,9 +22,8 @@ body {
   width: 100%;
   background-color: #84ceeb;
   color: #8860d0;
-
 }
-.headerContainer .logo{
+.headerContainer .logo {
   height: 10vh;
   width: 30vw;
   border: 1px solid #8860d0;
@@ -32,7 +31,7 @@ body {
   background-color: #8860d0;
   border-collapse: collapse;
 }
-.headerContainer ul{
+.headerContainer ul {
   list-style-type: none;
   width: 50vw;
   display: flex;
@@ -40,30 +39,38 @@ body {
   margin: 0;
   margin-right: 10px;
 }
-.homeContainer{
+.homeContainer {
   height: 80vh;
   width: 100%;
-  background-color: #5ab9ea;  
+  background-color: #5ab9ea;
 }
-.campaingsContainer{
+.campaingsContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  width: 100%;  
+  width: 100%;
   background-color: #8860d0;
 }
-.campaingsContainer div:nth-child(1){
+.campaingsContainer div:nth-child(1) {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
 }
-.campaingsContainer div:nth-child(2){
+.campaingsContainer div:nth-child(2) {
   margin: 0 2vw 0 2vw;
   flex-grow: 3;
 }
-.mapContainer{
+.campaingForm {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.campaingForm > label > input {
+  float: right;
+}
+.mapContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -71,32 +78,32 @@ body {
   width: 100%;
   background-color: #5680e9;
 }
-.mapContainer div:nth-child(1){
+.mapContainer > h1 {
+  border: 1px solid blue;
+  width: 100%;
+}
+
+.mapContainer > div {
   display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  align-items: center;
-  flex: 1;
+  justify-content: space-between;
+  height: 70vh;
+  border: 1px solid purple;
 }
-.mapContainer div:nth-child(2){
-  flex-direction: row;
-  display: flex;
-  border: 1px solid black;
-  flex: 2;
-}
-.mapContainer div:nth-child(2) div:nth-child(1){
-  flex-grow: 2;
-  border: 1px solid black;
-}
-.mapContainer div:nth-child(2) div:nth-child(2){
-  flex-grow: 1;
+.map {
+  width: 60%;
+  height: 100%;
   border: 1px solid red;
 }
-.mapContainer div:nth-child(2) div:nth-child(2) form{
-  flex-direction: row;
-  display: flex;
+#mapid {
+  height: 100%;
 }
-.donationsContainer{
+#campaingMap {
+  width: 60%;
+  height: 100%;
+  border: 1px solid red;
+  margin-bottom: 2rem;
+}
+.donationsContainer {
   height: 100vh;
   width: 100%;
   background-color: #8860d0;

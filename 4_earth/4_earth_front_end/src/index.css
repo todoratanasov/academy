@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
+html {
+  font-family: "Acme", sans-serif;
+  color: #c1c8e4;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+}
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  height: 20vh;
+  width: 100%;
+  background-color: #84ceeb;
+  color: #8860d0;
+}
+.headerContainer .logo {
+  height: 10vh;
+  width: 30vw;
+  border: 1px solid #8860d0;
+  border-radius: 4px;
+  background-color: #8860d0;
+  border-collapse: collapse;
+}
+.headerContainer ul {
+  list-style-type: none;
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  margin-right: 10px;
+}
+.homeContainer {
+  height: 80vh;
+  width: 100%;
+  background-color: #5ab9ea;
+}
+.campaingsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  background-color: #8860d0;
+}
+.campaingsContainer div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.campaingsContainer div:nth-child(2) {
+  margin: 0 2vw 0 2vw;
+  flex-grow: 3;
+}
+.campaingForm {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.campaingForm > label > input {
+  float: right;
+}
+.mapContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  background-color: #5680e9;
+}
+.mapContainer > h1 {
+  border: 1px solid blue;
+  width: 100%;
+}
+
+.mapContainer > div {
+  display: flex;
+  justify-content: space-between;
+  height: 70vh;
+  border: 1px solid purple;
+}
+.map {
+  width: 60%;
+  height: 100%;
+  border: 1px solid red;
+}
+#mapid {
+  height: 100%;
+}
+#campaingMap {
+  width: 60%;
+  height: 100%;
+  border: 1px solid red;
+  margin-bottom: 2rem;
+}
+.donationsContainer {
+  height: 100vh;
+  width: 100%;
+  background-color: #8860d0;
+}

@@ -1,7 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import L from "leaflet";
+import axios from "axios";
 
 export default function() {
+  const [campaingState, setCampaingState] = useState({
+    latitude: null,
+    longitude: null,
+    description: null,
+    pictureHtml: null
+  });
   useEffect(() => {
     const mymap = L.map("campaingMap", { scrollWheelZoom: false }).setView(
       [10, 0],
@@ -20,19 +27,53 @@ export default function() {
           "pk.eyJ1IjoiYXRhbmFzb3Z0IiwiYSI6ImNqem12eng2bDA4M2Uzbm55ejdveGRobDQifQ.QPYIVyQUCZfyd_u2NNXD9Q"
       }
     ).addTo(mymap);
+    const url = "http://localhost:3001/campaings";
 
-    function onMapClick(e) {
-      const lat = e.latlng.lat;
-      const lng = e.latlng.lng;
-    }
-    mymap.on("click", onMapClick);
+    axios.get(url).then(result => {
+      result.data.forEach(campaing => {
+        const marker = L.marker([campaing.latitude, campaing.longitude]).addTo(
+          mymap
+        );
+        marker.on("click", function() {
+          const newCampaingState = {
+            ...campaingState
+          };
+          newCampaingState.latitude = campaing.latitude;
+          newCampaingState.longitude = campaing.longitude;
+          newCampaingState.description = campaing.description;
+          newCampaingState.pictureHtml = campaing.pictureHtml;
+          setCampaingState(newCampaingState);
+        });
+      });
+    });
   }, []);
+  useEffect(() => {}, [campaingState]);
   return (
     <div id="campaings" className="campaingsContainer">
+      <h1>This is campaings component</h1>
       <div>
-        <h1>This is campaings component</h1>
+        <div className="campaingsMap">
+          <div id="campaingMap" />
+        </div>
+        <div className="campaingInfo">
+          <img src={campaingState.pictureHtml} />
+          <div>
+            {campaingState.longitude ? (
+              <div>
+                <p>Description of the problem: {campaingState.description}</p>
+                <p>
+                  Just look at that mess! Plese if you can help dealing whit
+                  that you can enter theese coordinates on your GPS (
+                  {campaingState.latitude},{campaingState.longitude}) and we'll
+                  wait for you there. You can always help 4 Earth by clicking{" "}
+                  <a>HERE</a> and donating some money so that we can continue
+                  the war against the world pollution!
+                </p>
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
-      <div id="campaingMap" />
     </div>
   );
 }

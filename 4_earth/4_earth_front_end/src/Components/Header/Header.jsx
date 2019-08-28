@@ -3,17 +3,23 @@ import React from "react";
 const header = () => {
   return (
     <header className="headerContainer">
-      <div className="logo" />
+      <a href="#">
+        <img src={process.env.PUBLIC_URL + "logo.png"}></img>
+      </a>
+
       <ul>
-        <li>Home</li>
-        <li>About</li>
         <li>
-          <a href="#campaings">Campaings</a>
+          <a href="#">Home</a>
         </li>
         <li>
           <a href="#polutionMap">Report polution</a>
         </li>
-        <li>Donation</li>
+        <li>
+          <a href="#campaings">Campaings</a>
+        </li>
+        <li>
+          <a href="#donationsContainer">Donation</a>
+        </li>
       </ul>
     </header>
   );

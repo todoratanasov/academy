@@ -1,0 +1,42 @@
+{
+  "campaings": [
+    {
+      "latitude": 40.7305762322687,
+      "longitude": 61.98433453025666,
+      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
+      "description": "asdasdasd",
+      "id": 2
+    },
+    {
+      "latitude": 43.14924895242442,
+      "longitude": 27.909557769178992,
+      "pictureHtml": "https://psmag.com/.image/t_share/MTMwNjIxNjY4Mzg0MDk4MzE0/power-station-374097_1280jpg.jpg",
+      "description": "wrong",
+      "id": 3
+    },
+    {
+      "latitude": 5.59378029245351,
+      "longitude": -0.3319931030273438,
+      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
+      "description": "This is a garbage from the local rafinery!",
+      "id": 4
+    },
+    {
+      "latitude": 43.207576695014346,
+      "longitude": 27.93359756469727,
+      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
+      "description": "Something is wrong!",
+      "id": 5
+    }
+  ],
+  "donation": [
+    {
+      "name": "Todor",
+      "cardNumber": "123",
+      "expiration": "",
+      "code": "123",
+      "amount": "222",
+      "id": 1
+    }
+  ]
+}

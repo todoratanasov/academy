@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Thanks from "../Thanks/Thanks";
 
 export default function(props) {
   const [creditCardState, setCreditCardState] = useState({
@@ -68,7 +69,7 @@ export default function(props) {
       <h1>Let's invest in our children's future!</h1>
       <div className="donationFormContainer">
         {postedDonationState.donated ? (
-          <div>Thank you!</div>
+          <Thanks title={"We'll put your money in to good use!"} />
         ) : (
           <div className="donationAndExampleContainer">
             <form className="donationForm" onSubmit={submitHandler}>

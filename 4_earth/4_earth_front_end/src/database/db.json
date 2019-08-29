@@ -1,64 +1,33 @@
 {
   "campaings": [
     {
-      "latitude": 40.7305762322687,
-      "longitude": 61.98433453025666,
-      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "asdasdasd",
-      "id": 2
-    },
-    {
-      "latitude": 43.14924895242442,
-      "longitude": 27.909557769178992,
-      "pictureHtml": "https://psmag.com/.image/t_share/MTMwNjIxNjY4Mzg0MDk4MzE0/power-station-374097_1280jpg.jpg",
-      "description": "wrong",
-      "id": 3
-    },
-    {
-      "latitude": 5.59378029245351,
-      "longitude": -0.3319931030273438,
-      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "This is a garbage from the local rafinery!",
-      "id": 4
-    },
-    {
-      "latitude": 43.207576695014346,
-      "longitude": 27.93359756469727,
-      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "Something is wrong!",
-      "id": 5
-    },
-    {
-      "latitude": 27.382946744712346,
-      "longitude": 62.92968750000001,
-      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "Help!",
-      "id": 6
-    },
-    {
-      "latitude": 27.694749896060145,
-      "longitude": 60.11718750000001,
-      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "Something!",
-      "id": 7
-    }
-  ],
-  "donation": [
-    {
-      "name": "Todor",
-      "cardNumber": "123",
-      "expiration": "",
-      "code": "123",
-      "amount": "222",
+      "latitude": 38.2872279601323,
+      "longitude": 16.318130493164066,
+      "pictureHtml": "https://images.news18.com/ibnlive/uploads/2019/03/river-pollution.jpg",
+      "description": "River pollution",
       "id": 1
     },
     {
-      "name": "Todor",
-      "cardNumber": "1234",
-      "expiration": "",
-      "code": "123",
-      "amount": "222",
+      "latitude": -0.4945075894460207,
+      "longitude": -50.71014404296876,
+      "pictureHtml": "https://static1.squarespace.com/static/55b29de4e4b088f33db802c6/55b2bb8ee4b04064778cdc7c/578d5f739de4bb94141a113c/1472543771826/Manilla1.jpg?format=2500w",
+      "description": "Domestic garbage!",
       "id": 2
+    },
+    {
+      "latitude": 28.293820677642913,
+      "longitude": 63.33618164062501,
+      "pictureHtml": "https://images.squarespace-cdn.com/content/55b29de4e4b088f33db802c6/1484647866944-TIRIPCSMKXSTDH5XV6SH/50731199_l.jpg?format=1500w&content-type=image%2Fjpeg",
+      "description": "Plastic pollution!",
+      "id": 3
+    },
+    {
+      "latitude": 29.338070163558125,
+      "longitude": -81.06399536132814,
+      "pictureHtml": "https://thumbs-prod.si-cdn.com/K5Fk2hTgNSBXN7p1cVtbGpGL6yc=/800x600/filters:no_upscale()/https://public-media.si-cdn.com/filer/12/74/1274dd4f-4091-4fcf-9e0d-8f06947785e3/img_6876.jpg",
+      "description": "Dirty beaches!",
+      "id": 4
     }
-  ]
+  ],
+  "donation": []
 }

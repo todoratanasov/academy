@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import L from "leaflet";
 import axios from "axios";
+import Thanks from "../Thanks/Thanks";
 
 export default function(props) {
   const [inputRefs, setInputRefs] = useState({
@@ -109,7 +110,7 @@ export default function(props) {
           <div id="mapid" />
         </div>
         {postedPollution.posted ? (
-          <div>Thank you</div>
+          <Thanks title={"Our planet thanks you!"} />
         ) : (
           <div className="mapFormContainer">
             <form className="campaingForm" onSubmit={submitHandler}>

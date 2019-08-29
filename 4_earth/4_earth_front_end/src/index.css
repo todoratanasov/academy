@@ -17,6 +17,7 @@ body {
 }
 a {
   text-decoration: none;
+  color: #8860d0;
 }
 h1 {
   margin-top: 10vh;
@@ -51,12 +52,17 @@ h1 {
 .headerContainer ul li a {
   position: relative;
 }
+.headerContainer ul li a:hover {
+  color: black;
+}
 .headerContainer ul li a::before,
 .headerContainer ul li a::after,
 .campaingForm::before,
 .campaingForm::after,
 .donationForm::before,
-.donationForm::after {
+.donationForm::after,
+.donationsAnker::before,
+.donationsAnker::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -68,15 +74,15 @@ h1 {
 }
 .headerContainer ul li a::before,
 .campaingForm::before,
-.donationForm::before {
-  margin-top: -0.3rem;
+.donationForm::before,
+.donationsAnker::before {
   top: 0;
   transform-origin: right;
 }
 .headerContainer ul li a::after,
 .campaingForm::after,
-.donationForm::after {
-  margin-bottom: -0.2rem;
+.donationForm::after,
+.donationsAnker::after {
   bottom: 0;
   transform-origin: left;
 }
@@ -85,8 +91,18 @@ h1 {
 .campaingForm:hover::after,
 .campaingForm:hover::before,
 .donationForm:hover::before,
-.donationForm:hover::after {
+.donationForm:hover::after,
+.donationsAnker:hover::before,
+.donationsAnker:hover::after {
   transform: scaleX(1);
+}
+.campaingForm::before,
+.donationForm::before {
+  top: 0.5rem;
+}
+.campaingForm::after,
+.donationForm::after {
+  bottom: -0.5rem;
 }
 /* /Header */
 
@@ -97,16 +113,42 @@ h1 {
   padding-bottom: 1rem;
   margin-top: 10vh;
   z-index: 0;
-  height: 85vh;
+  height: 90vh;
   width: 100%;
   background-color: #5ab9ea;
 }
-.homeContainer > video {
-  width: 60vw;
-  border-radius: 100px;
+.homeContainer > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+  width: 80vw;
+  background: url(/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 80vw 60vh;
+  height: 60vh;
+  border-radius: 300px;
+  margin: auto;
+}
+.homeContainer > h1 > span {
+  color: red;
+}
+.videoContainer > video {
+  opacity: 0.7;
+  margin: 0.5rem;
+  width: 15vw;
+  border-radius: 15px;
   box-shadow: 0px 0px 22px 13px rgba(3, 3, 3, 0.29);
 }
-
+.videoContainer video:hover {
+  width: 18vw;
+  opacity: 2;
+  transition: opacity 1.5s, width 0.8s;
+}
+.videoContainer {
+  width: 21vw;
+  height: 20vh;
+}
 /* /Home */
 
 /* Map Send signal for pollution */
@@ -124,7 +166,10 @@ h1 {
 .mapContainer > h1 {
   width: 100%;
 }
-
+.mapContainer > p {
+  width: 70vw;
+  margin: auto;
+}
 .mapContainer > div {
   display: flex;
   justify-content: space-between;
@@ -152,7 +197,17 @@ h1 {
   flex-direction: column;
   margin: auto;
 }
-
+.donationsAnker {
+  border-radius: 3px;
+  background-color: #5ab9ea;
+  position: relative;
+  padding: 1px;
+  box-sizing: border-box;
+}
+.donationsAnker:hover {
+  background-color: #5680e9;
+  color: #c1c8e4;
+}
 /* /Send signal for pollution */
 
 /* Campaings */
@@ -224,12 +279,28 @@ h1 {
 .donationFormContainer {
   height: 70vh;
 }
+.donationAndExampleContainer {
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+}
 .donationForm {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: auto;
   width: 30vw;
+}
+.cardExample {
+  width: 30vw;
+  display: flex;
+  margin-left: 2vw;
+}
+.cardExample > img {
+  border: 1px solid white;
+  width: 29vw;
+  margin: auto;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
 .donationForm > label > input {
   margin-bottom: 0.5rem;

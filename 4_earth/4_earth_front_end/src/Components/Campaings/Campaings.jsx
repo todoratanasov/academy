@@ -9,6 +9,7 @@ export default function() {
     description: null,
     pictureHtml: null
   });
+
   useEffect(() => {
     const mymap = L.map("campaingMap", { scrollWheelZoom: false }).setView(
       [10, 0],
@@ -47,10 +48,11 @@ export default function() {
       });
     });
   }, []);
+
   useEffect(() => {}, [campaingState]);
   return (
     <div id="campaings" className="campaingsContainer">
-      <h1>This is campaings component</h1>
+      <h1>See where our planet needs YOU!</h1>
       <div>
         <div className="campaingsMap">
           <div id="campaingMap" />
@@ -66,8 +68,11 @@ export default function() {
                   that you can enter theese coordinates on your GPS (
                   {campaingState.latitude},{campaingState.longitude}) and we'll
                   wait for you there. You can always help 4 Earth by clicking{" "}
-                  <a>HERE</a> and donating some money so that we can continue
-                  the war against the world pollution!
+                  <a className="donationsAnker" href="#donationsContainer">
+                    HERE
+                  </a>{" "}
+                  and donating some money so that we can continue the war
+                  against the world pollution!
                 </p>
               </div>
             ) : null}

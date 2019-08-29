@@ -4,7 +4,7 @@ const header = () => {
   return (
     <header className="headerContainer">
       <a href="#">
-        <img src={process.env.PUBLIC_URL + "logo.png"}></img>
+        <img src={process.env.PUBLIC_URL + "logo.png"} alt="logo"></img>
       </a>
 
       <ul>
@@ -12,7 +12,7 @@ const header = () => {
           <a href="#">Home</a>
         </li>
         <li>
-          <a href="#polutionMap">Report polution</a>
+          <a href="#polutionMap">Report pollution</a>
         </li>
         <li>
           <a href="#campaings">Campaings</a>

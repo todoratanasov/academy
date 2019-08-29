@@ -78,13 +78,6 @@ export default function(props) {
       newMapState.longitude = lng;
 
       setMapState(newMapState);
-      // inputRefs.latInput.value = event.latlng.lat;
-      // const latInputEvent = new Event("input", { bubbles: false });
-      // inputRefs.latInput.dispatchEvent(latInputEvent);
-
-      // inputRefs.lngInput.value = event.latlng.lng;
-      // const lngInputEvent = new Event("input", { bubbles: true });
-      // inputRefs.latInput.dispatchEvent(lngInputEvent);
 
       const marker = new L.Marker(new L.LatLng(lat, lng));
 
@@ -104,7 +97,13 @@ export default function(props) {
 
   return (
     <div id="polutionMap" className="mapContainer">
-      <h1>This is map component</h1>
+      <h1>Let's clean the earth together!</h1>
+      <p>
+        If you know places where mother Nature needs help please use this map to
+        point the exact coordinates and others like you will come and help you
+        do things right!
+      </p>
+
       <div>
         <div className="map">
           <div id="mapid" />
